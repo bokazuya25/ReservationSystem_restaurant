@@ -80,4 +80,5 @@ main {
     border-radius: 5px;
     color: #fff;
     padding: 3px 10px;
+    cursor: pointer;
 }

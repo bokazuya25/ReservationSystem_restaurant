@@ -25,8 +25,8 @@
             <nav class="nav__content">
                 <ul class="nav__list">
                     <li class="nav__item"><a class="nav__item-link" href="">Home</a></li>
-                    <li class="nav__item"><a class="nav__item-link" href="">Registration</a></li>
-                    <li class="nav__item"><a class="nav__item-link" href="">Login</a></li>
+                    <li class="nav__item"><a class="nav__item-link" href="register">Registration</a></li>
+                    <li class="nav__item"><a class="nav__item-link" href="login">Login</a></li>
                 </ul>
             </nav>
         </div>

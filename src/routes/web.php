@@ -19,3 +19,4 @@ Route::view('/login', 'auth.login');
 Route::view('/thanks', 'auth.thanks');
 
 Route::get('/',[ShopController::class,'index']);
+Route::get('/detail/{shop_id}',[ShopController::class,'detail']);

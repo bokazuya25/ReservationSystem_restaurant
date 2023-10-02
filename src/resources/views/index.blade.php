@@ -47,8 +47,8 @@
                     <p class="shop__tag-info">#{{ $shop->genre }}</p>
                 </div>
                 <div class="shop__button">
-                    <a href="" class="shop__button-detail">詳しくみる</a>
-                    <form action="" class="shop__button-favorite"></form>
+                    <a href="/detail/{{ $shop->id }}" class="shop__button-detail">詳しくみる</a>
+                    <form action="" class="shop__button-favorite">
                         <button type="submit" class="shop__button-favorite-btn"></button>
                     </form>
                 </div>

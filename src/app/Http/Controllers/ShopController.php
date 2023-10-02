@@ -11,4 +11,9 @@ class ShopController extends Controller
         $shops = Shop::all();
         return view('index',compact('shops'));
     }
+
+    public function detail(Request $request) {
+        $shop = Shop::find($request->shop_id);
+        return view('detail',compact('shop'));
+    }
 }

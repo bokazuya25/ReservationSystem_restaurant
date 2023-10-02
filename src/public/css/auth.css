@@ -1,5 +1,6 @@
 main {
-    padding: 75px;
+    margin: 20vh auto 0;
+    transform: translateY(-30%);
 }
 
 .auth__wrap {

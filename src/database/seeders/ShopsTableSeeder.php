@@ -78,7 +78,7 @@ class ShopsTableSeeder extends Seeder
         DB::table('shops')->insert($param);
 
         $param = [
-            'name' => '5極み',
+            'name' => 'ラーメン極み',
             'area_id' => '1',
             'genre_id' => '5',
             'outline' => '一杯、一杯心を込めて職人が作っております。味付けは少し濃いめです。 食べやすく最後の一滴まで美味しく飲めると好評です。',

@@ -16,8 +16,8 @@
             <img src="{{ $shop->image_url }}" alt="イメージ画像" class="detail__image-img">
         </div>
         <div class="detail__tag">
-            <p class="detail__tag-info">#{{ $shop->area }}</p>
-            <p class="detail__tag-info">#{{ $shop->genre }}</p>
+            <p class="detail__tag-info">#{{ $shop->area->area }}</p>
+            <p class="detail__tag-info">#{{ $shop->genre->genre }}</p>
         </div>
         <div class="detail__outline">
             <p class="detail__outline-text">{{ $shop->outline }}</p>

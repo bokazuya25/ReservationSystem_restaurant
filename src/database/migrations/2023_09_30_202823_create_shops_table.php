@@ -16,8 +16,8 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('area');
-            $table->string('genre');
+            $table->foreignId('area_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
             $table->string('outline')->nullable();
             $table->string('image_url')->nullable();
             $table->timestamps();
@@ -31,6 +31,10 @@ class CreateShopsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('shops', function (Blueprint $table) {
+        //     $table->dropForeign(['area_id', 'genre_id']);
+        // });
+
         Schema::dropIfExists('shops');
     }
 }

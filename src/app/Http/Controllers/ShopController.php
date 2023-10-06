@@ -16,4 +16,10 @@ class ShopController extends Controller
         $shop = Shop::find($request->shop_id);
         return view('detail',compact('shop'));
     }
+
+    public function mypage() {
+        // $reservation = Reservation::where('user_id',id);
+        // $favorite = Favorite::where('user_id',id);
+        return view('mypage');
+    }
 }

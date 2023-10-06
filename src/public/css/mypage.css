@@ -1,0 +1,86 @@
+.user__name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 42%;
+    margin-bottom: 0;
+}
+
+.mypage__wrap {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.reservation__wrap {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+}
+
+.reservation__content {
+    margin-bottom: 30px;
+    padding: 10px 10% 30px 10%;
+    background-color: rgb(84, 124, 243);
+    border-radius: 5px;
+    color: #fff;
+}
+
+.reservation__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__title {
+    display: flex;
+    align-items: center;
+}
+
+.header__title::before {
+    content: "";
+    background: url(../images/clock.svg);
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    padding-left: 50px;
+}
+
+.header__form {
+    display: flex;
+    align-items: center;
+}
+
+.form__button {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.form__button-img {
+    width: 25px;
+    height: 25px;
+}
+
+.reservation__title,
+.favorite__title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.table__header {
+    width: 55%;
+    text-align: left;
+    font-weight: normal;
+    padding: 5px 0;
+}
+
+.favorite__wrap {
+    width: 58%;
+}
+
+.shop__content {
+    width: 300px;
+}

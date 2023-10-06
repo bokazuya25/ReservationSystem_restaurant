@@ -1,12 +1,15 @@
 body {
+    max-width: 1280px;
+    margin: 0 auto;
     background-color: #eee;
-    padding: 30px 80px;
+    padding: 30px 75px;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 30px;
 }
 
 .header__left {

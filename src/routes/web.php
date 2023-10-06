@@ -18,6 +18,7 @@ Route::view('/register', 'auth.register');
 Route::view('/login', 'auth.login');
 Route::view('/thanks', 'auth.thanks');
 Route::view('/done', 'done');
+Route::view('/mypage', 'mypage');
 
 Route::get('/',[ShopController::class,'index']);
 Route::get('/detail/{shop_id}',[ShopController::class,'detail']);

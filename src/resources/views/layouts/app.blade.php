@@ -14,15 +14,9 @@
 <body>
     <header>
         <div class="header__left">
-            <!-- ハンバーガーメニュー部分 -->
             <div class="header__icon">
-                <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
                 <input id="drawer__input" class="drawer__hidden" type="checkbox">
-
-                <!-- ハンバーガーアイコン -->
                 <label for="drawer__input" class="drawer__open"><span></span></label>
-
-                <!-- メニュー -->
                 <nav class="nav__content">
                     <ul class="nav__list">
                         <li class="nav__item"><a class="nav__item-link" href="">Home</a></li>
@@ -31,7 +25,6 @@
                     </ul>
                 </nav>
             </div>
-            <!-- ヘッダーロゴ -->
             <div class="header__logo">Rese</div>
         </div>
         @yield('header')

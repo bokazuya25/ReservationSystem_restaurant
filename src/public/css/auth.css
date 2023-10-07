@@ -37,7 +37,14 @@ main {
 .form__item-mail,
 .form__item-key {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+}
+
+.error__item {
+    margin-bottom: 15px;
+    color: red;
+    font-size: 14px;
+    margin-left: 38px;
 }
 
 .form__item-user::before {

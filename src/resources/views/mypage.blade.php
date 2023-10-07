@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <p class="user__name">〇〇さん</p>
+    <p class="user__name">{{ Auth::user()->name }}さん</p>
     <div class="mypage__wrap">
         <div class="reservation__wrap">
             <p class="reservation__title">予約状況</p>

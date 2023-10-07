@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/register', 'auth.register');
-Route::view('/login', 'auth.login');
 Route::view('/thanks', 'auth.thanks');
 Route::view('/done', 'done');
-Route::view('/mypage', 'mypage');
+Route::view('/mypage','mypage')
+    ->middleware('auth');
+
 
 Route::get('/',[ShopController::class,'index']);
 Route::get('/detail/{shop_id}',[ShopController::class,'detail']);
+Route::get('/logout',[AuthController::class,'destroy'])
+    ->middleware('auth');

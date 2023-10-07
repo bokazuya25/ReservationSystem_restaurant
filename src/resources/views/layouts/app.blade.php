@@ -19,9 +19,14 @@
                 <label for="drawer__input" class="drawer__open"><span></span></label>
                 <nav class="nav__content">
                     <ul class="nav__list">
-                        <li class="nav__item"><a class="nav__item-link" href="">Home</a></li>
-                        <li class="nav__item"><a class="nav__item-link" href="register">Registration</a></li>
-                        <li class="nav__item"><a class="nav__item-link" href="login">Login</a></li>
+                        <li class="nav__item"><a class="nav__item-link" href="/">Home</a></li>
+                        @if (Auth::check())
+                            <li class="nav__item"><a class="nav__item-link" href="/logout">Logout</a></li>
+                            <li class="nav__item"><a class="nav__item-link" href="/mypage">Mypage</a></li>
+                        @else
+                            <li class="nav__item"><a class="nav__item-link" href="/register">Registration</a></li>
+                            <li class="nav__item"><a class="nav__item-link" href="/login">Login</a></li>
+                        @endif
                     </ul>
                 </nav>
             </div>

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FavoriteController;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/thanks', 'auth.thanks');
 Route::view('/done', 'done');
-Route::view('/mypage','mypage')
-    ->middleware('auth');
-
 
 Route::get('/',[ShopController::class,'index']);
 Route::get('/detail/{shop_id}',[ShopController::class,'detail']);
 Route::get('/logout',[AuthController::class,'destroy'])
+    ->middleware('auth');
+
+Route::post('/favorite/store/{shop}',[FavoriteController::class,'store'])
+    ->name('favorite');
+Route::delete('/favorite/destroy/{shop}',[FavoriteController::class,'destroy'])
+    ->name('unfavorite');
+
+Route::get('/mypage',[AuthController::class,'index'])
     ->middleware('auth');

@@ -86,7 +86,7 @@
 
 .shop__wrap {
     display: flex;
-    gap:20px 15px;
+    gap: 20px 15px;
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -108,7 +108,7 @@
 }
 
 .shop__item {
-    margin:20px;
+    margin: 20px;
 }
 
 .shop__title {
@@ -150,6 +150,16 @@
     width: 25px;
     height: 25px;
     background: url(../images/heart.svg) no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    border: none;
+}
+
+.shop__button-favorite-btn--red {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url(../images/heart_color.svg) no-repeat;
     background-position: 0 0;
     cursor: pointer;
     border: none;

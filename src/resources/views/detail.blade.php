@@ -7,7 +7,7 @@
 @section('content')
     <div class="detail__wrap">
         <div class="detail__header">
-            <a href="/" class="header__back">
+            <a href="{{ $backRoute }}" class="header__back">
                 <
             </a>
             <span class="header__shop-name">{{ $shop->name }}</span>

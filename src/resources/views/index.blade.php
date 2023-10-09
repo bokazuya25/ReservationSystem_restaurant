@@ -47,10 +47,23 @@
                     <p class="shop__tag-info">#{{ $shop->genre->genre }}</p>
                 </div>
                 <div class="shop__button">
-                    <a href="/detail/{{ $shop->id }}" class="shop__button-detail">詳しくみる</a>
-                    <form action="" class="shop__button-favorite">
-                        <button type="submit" class="shop__button-favorite-btn"></button>
-                    </form>
+                    <a href="/detail/{{ $shop->id }}?from=index" class="shop__button-detail">詳しくみる</a>
+                    @if (Auth::check())
+                        @if(in_array($shop->id,$favorites))
+                            <form action="{{ route('unfavorite',$shop) }}" method="post" class="shop__button-favorite">
+                                @csrf
+                                @method('delete')
+                                    <button type="submit" class="shop__button-favorite-btn--red"></button>
+                            </form>
+                        @else
+                            <form action="{{ route('favorite',$shop) }}" method="post" class="shop__button-favorite">
+                                @csrf
+                                    <button type="submit" class="shop__button-favorite-btn"></button>
+                            </form>
+                        @endif
+                    @else
+                        <button type="button" onclick="location.href='/login'" class="shop__button-favorite-btn"></button>
+                    @endif
                 </div>
             </div>
         </div>

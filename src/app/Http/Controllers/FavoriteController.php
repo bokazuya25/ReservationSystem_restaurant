@@ -21,10 +21,7 @@ class FavoriteController extends Controller
 
     public function destroy(Shop $shop)
     {
-        $user = Auth::user()->id;
-        $favorite = Favorite::where('shop_id', $shop->id)
-            ->where('user_id', $user)->first();
-        $favorite->delete();
+        Auth::user()->favorites()->where('shop_id',$shop->id)->delete();
 
         return back();
     }

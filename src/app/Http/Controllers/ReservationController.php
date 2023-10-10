@@ -21,4 +21,10 @@ class ReservationController extends Controller
 
         return redirect('/done');
     }
+
+    public function destroy(Reservation $reservation)
+    {
+        $reservation->delete();
+        return back();
+    }
 }

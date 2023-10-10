@@ -10,11 +10,13 @@
     <div class="mypage__wrap">
         <div class="reservation__wrap">
             <p class="reservation__title">予約状況</p>
-            {{-- @foreach ($reservations as $reservation) --}}
+            @foreach ($reservations as $reservation)
                 <div class="reservation__content">
                     <div class="reservation__header">
-                        <p class="header__title">予約1</p>
-                        <form action="" class="header__form">
+                        <p class="header__title">予約{{ $loop->iteration }}</p>
+                        <form action="{{ route('reservation.destroy',$reservation) }}" method="post"  class="header__form">
+                            @csrf
+                            @method('delete')
                             <button type="submit" class="form__button">
                                 <img src="{{ asset('images/batsu.svg') }}" alt="予約キャンセル" class="form__button-img">
                             </button>
@@ -23,23 +25,23 @@
                     <table class="reservation__table">
                         <tr>
                             <th class="table__header">Shop</th>
-                            <td class="table__item">仙人</td>
+                            <td class="table__item">{{ $reservation->shop->name }}</td>
                         </tr>
                         <tr>
                             <th class="table__header">Date</th>
-                            <td class="table__item">2021-04-01</td>
+                            <td class="table__item">{{ $reservation->date }}</td>
                         </tr>
                         <tr>
                             <th class="table__header">Time</th>
-                            <td class="table__item">17:00</td>
+                            <td class="table__item">{{ date('H:i',strtotime($reservation->time)) }}</td>
                         </tr>
                         <tr>
                             <th class="table__header">Number</th>
-                            <td class="table__item">1人</td>
+                            <td class="table__item">{{ $reservation->number }}人</td>
                         </tr>
                     </table>
                 </div>
-            {{-- @endforeach --}}
+            @endforeach
         </div>
 
         <div class="favorite__wrap">

@@ -91,10 +91,11 @@ main {
 
 .reservation__area {
     padding: 20px;
+    font-size: 15px;
 }
 
 .table__header {
-    width: 72%;
+    width: 85px;
     text-align: left;
     font-weight: normal;
     padding: 2px 0;

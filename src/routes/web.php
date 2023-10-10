@@ -3,7 +3,9 @@
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReservationController;
 use App\Models\Favorite;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +34,5 @@ Route::delete('/favorite/destroy/{shop}',[FavoriteController::class,'destroy'])
 
 Route::get('/mypage',[AuthController::class,'index'])
     ->middleware('auth');
+
+Route::post('/reservation/{shop}',[ReservationController::class,'store']);

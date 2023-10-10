@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <form action="/reservation/{{ $shop->id }}" method="post" class="reservation__wrap">
+    <form action="{{ route('reservation',$shop) }}" method="post" class="reservation__wrap">
         @csrf
         <div class="reservation__content">
             <p class="reservation__title">予約</p>
@@ -46,7 +46,6 @@
                     <option value="4">4人</option>
                     <option value="5">5人</option>
                 </select>
-            <input type="hidden" name="shop" value="{{ $shop->id }}">
             </div>
 
             <div class="reservation__group">

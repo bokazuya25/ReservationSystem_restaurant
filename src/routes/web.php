@@ -35,4 +35,7 @@ Route::delete('/favorite/destroy/{shop}',[FavoriteController::class,'destroy'])
 Route::get('/mypage',[AuthController::class,'index'])
     ->middleware('auth');
 
-Route::post('/reservation/{shop}',[ReservationController::class,'store']);
+Route::post('/reservation/store/{shop}',[ReservationController::class,'store'])
+    ->name('reservation');
+Route::delete('/reservation/destroy/{reservation}',[ReservationController::class,'destroy'])
+    ->name('reservation.destroy');

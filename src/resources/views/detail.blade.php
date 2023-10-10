@@ -24,13 +24,29 @@
         </div>
     </div>
 
-    <form class="reservation__wrap">
+    <form action="/reservation/{{ $shop->id }}" method="post" class="reservation__wrap">
+        @csrf
         <div class="reservation__content">
             <p class="reservation__title">予約</p>
-            <div action="" class="form__content">
+            <div class="form__content">
                 <input type="date" class="form__item" name="date">
-                <input type="time" class="form__item" name="time">
-                <input type="text" class="form__item" name="number">
+                <select name="time" class="form__item" required>
+                    <option value="" selected disabled>-- 時間を選択してください --</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                </select>
+                <select name="number" class="form__item" required>
+                    <option value="" selected disabled>-- 人数を選択してください --</option>
+                    <option value="1">1人</option>
+                    <option value="2">2人</option>
+                    <option value="3">3人</option>
+                    <option value="4">4人</option>
+                    <option value="5">5人</option>
+                </select>
+            <input type="hidden" name="shop" value="{{ $shop->id }}">
             </div>
 
             <div class="reservation__group">
@@ -42,15 +58,15 @@
                         </tr>
                         <tr>
                             <th class="table__header">Date</th>
-                            <td class="table__item"></td>
+                            <td class="table__item" id="dateId"></td>
                         </tr>
                         <tr>
                             <th class="table__header">Time</th>
-                            <td class="table__item"></td>
+                            <td class="table__item" id="timeId"></td>
                         </tr>
                         <tr>
                             <th class="table__header">Number</th>
-                            <td class="table__item"></td>
+                            <td class="table__item" id="numberId"></td>
                         </tr>
                     </table>
                 </div>
@@ -60,4 +76,5 @@
             <button type="submit" class="reservation__button-btn">予約する</button>
         </div>
     </form>
+    <script src="{{ asset('js/detail.js') }}"></script>
 @endsection

@@ -23,6 +23,8 @@ Route::view('/thanks', 'auth.thanks');
 Route::view('/done', 'done');
 
 Route::get('/',[ShopController::class,'index']);
+Route::get('/search',[ShopController::class,'search'])->name('search');
+
 Route::get('/detail/{shop_id}',[ShopController::class,'detail']);
 Route::get('/logout',[AuthController::class,'destroy'])
     ->middleware('auth');

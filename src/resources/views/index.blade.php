@@ -5,68 +5,71 @@
 @endsection
 
 @section('header')
-    <form class="header__right">
+    <div action="/search" method="get" class="header__right">
         <label class="select-box__label">
-            <select class="select-box__item">
-                <option class="select-box__option">All area</option>
-                <option class="select-box__option">東京都</option>
-                <option class="select-box__option">大阪府</option>
-                <option class="select-box__option">福岡県</option>
+            <select name="area" class="select-box__item">
+                <option value="">All area</option>
+                @foreach ($areas as $area)
+                    <option class="select-box__option" value="{{ $area->id }}"
+                        {{ request('area') == $area->id ? 'selected' : '' }}>{{ $area->area }}
+                    </option>
+                @endforeach
             </select>
         </label>
 
         <label class="select-box__label">
-            <select class="select-box__item">
-                <option>All genre</option>
-                <option>寿司</option>
-                <option>焼肉</option>
-                <option>居酒屋</option>
-                <option>イタリアン</option>
-                <option>ラーメン</option>
+            <select name="genre" class="select-box__item">
+                <option value="">All genre</option>
+                @foreach ($genres as $genre)
+                    <option value="{{ $genre->id }}" {{ request('genre') == $genre->id ? 'selected' : ''}}>{{ $genre->genre }}</option>
+                @endforeach
             </select>
         </label>
 
         <div class="search__item">
-            <button type="submit" class="search__item-button" aria-label="検索"></button>
+            <div class="search__item-button"></div>
             <label class="search__item-lavel">
-                <input type="text" class="search__item-input" placeholder="Search ...">
+                <input type="text" name="word" class="search__item-input" placeholder="Search ..." value="{{ request('word') }}">
             </label>
         </div>
-    </form>
+    </div>
 @endsection
 
 @section('content')
     <div class="shop__wrap">
         @foreach ($shops as $shop)
-        <div class="shop__content">
-            <img class="shop__image" src="{{ $shop->image_url }}" alt="イメージ画像">
-            <div class="shop__item">
-                <span class="shop__title">{{ $shop->name }}</span>
-                <div class="shop__tag">
-                    <p class="shop__tag-info">#{{ $shop->area->area }}</p>
-                    <p class="shop__tag-info">#{{ $shop->genre->genre }}</p>
-                </div>
-                <div class="shop__button">
-                    <a href="/detail/{{ $shop->id }}?from=index" class="shop__button-detail">詳しくみる</a>
-                    @if (Auth::check())
-                        @if(in_array($shop->id,$favorites))
-                            <form action="{{ route('unfavorite',$shop) }}" method="post" class="shop__button-favorite">
-                                @csrf
-                                @method('delete')
+            <div class="shop__content">
+                <img class="shop__image" src="{{ $shop->image_url }}" alt="イメージ画像">
+                <div class="shop__item">
+                    <span class="shop__title">{{ $shop->name }}</span>
+                    <div class="shop__tag">
+                        <p class="shop__tag-info">#{{ $shop->area->area }}</p>
+                        <p class="shop__tag-info">#{{ $shop->genre->genre }}</p>
+                    </div>
+                    <div class="shop__button">
+                        <a href="/detail/{{ $shop->id }}?from=index" class="shop__button-detail">詳しくみる</a>
+                        @if (Auth::check())
+                            @if (in_array($shop->id, $favorites))
+                                <form action="{{ route('unfavorite', $shop) }}" method="post"
+                                    class="shop__button-favorite">
+                                    @csrf
+                                    @method('delete')
                                     <button type="submit" class="shop__button-favorite-btn--red"></button>
-                            </form>
-                        @else
-                            <form action="{{ route('favorite',$shop) }}" method="post" class="shop__button-favorite">
-                                @csrf
+                                </form>
+                            @else
+                                <form action="{{ route('favorite', $shop) }}" method="post" class="shop__button-favorite">
+                                    @csrf
                                     <button type="submit" class="shop__button-favorite-btn"></button>
-                            </form>
+                                </form>
+                            @endif
+                        @else
+                            <button type="button" onclick="location.href='/login'"
+                                class="shop__button-favorite-btn"></button>
                         @endif
-                    @else
-                        <button type="button" onclick="location.href='/login'" class="shop__button-favorite-btn"></button>
-                    @endif
+                    </div>
                 </div>
             </div>
-        </div>
         @endforeach
     </div>
+    <script src="{{ asset('js/search.js') }}"></script>
 @endsection

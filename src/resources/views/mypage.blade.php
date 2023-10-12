@@ -17,7 +17,7 @@
                         <form action="{{ route('reservation.destroy',$reservation) }}" method="post"  class="header__form">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="form__button">
+                            <button type="submit" class="form__button" onclick="return confirmCancel()">
                                 <img src="{{ asset('images/batsu.svg') }}" alt="予約キャンセル" class="form__button-img">
                             </button>
                         </form>
@@ -72,4 +72,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/reservation.js') }}"></script>
 @endsection

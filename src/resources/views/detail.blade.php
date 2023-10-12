@@ -8,9 +8,8 @@
     <div class="detail__wrap">
         <div class="detail__header">
             <a href="{{ $backRoute }}" class="header__back">
-                <
-            </a>
-            <span class="header__shop-name">{{ $shop->name }}</span>
+                < </a>
+                    <span class="header__shop-name">{{ $shop->name }}</span>
         </div>
         <div class="detail__image">
             <img src="{{ $shop->image_url }}" alt="イメージ画像" class="detail__image-img">
@@ -24,12 +23,12 @@
         </div>
     </div>
 
-    <form action="{{ route('reservation',$shop) }}" method="post" class="reservation__wrap">
+    <form action="{{ route('reservation', $shop) }}" method="post" class="reservation__wrap">
         @csrf
         <div class="reservation__content">
             <p class="reservation__title">予約</p>
             <div class="form__content">
-                <input type="date" class="form__item" name="date">
+                <input type="date" class="form__item" name="date" required>
                 <select name="time" class="form__item" required>
                     <option value="" selected disabled>-- 時間を選択してください --</option>
                     <option value="20:00">20:00</option>
@@ -72,8 +71,14 @@
             </div>
         </div>
         <div class="reservation__button">
-            <button type="submit" class="reservation__button-btn">予約する</button>
+            @if (Auth::check())
+                <button type="submit" class="reservation__button-btn" onclick="return confirmReservation()">予約する</button>
+            @else
+                <button type="submit" class="reservation__button-btn--disabled" disabled>予約は<a href="/register" class="reservation__button-link">会員登録</a><a
+                        href="/login" class="reservation__button-link">ログイン</a>が必要です</button>
+            @endif
         </div>
     </form>
     <script src="{{ asset('js/detail.js') }}"></script>
+    <script src="{{ asset('js/reservation.js') }}"></script>
 @endsection

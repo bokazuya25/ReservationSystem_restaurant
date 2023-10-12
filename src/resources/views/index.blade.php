@@ -54,6 +54,7 @@
                                     class="shop__button-favorite">
                                     @csrf
                                     @method('delete')
+                                    <input type="hidden" name="position" value="0">
                                     <button type="submit" class="shop__button-favorite-btn--red"></button>
                                 </form>
                             @else

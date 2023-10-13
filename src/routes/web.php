@@ -23,7 +23,8 @@ Route::view('/thanks', 'auth.thanks');
 Route::view('/done', 'done');
 
 Route::get('/',[ShopController::class,'index']);
-Route::get('/search',[ShopController::class,'search'])->name('search');
+Route::get('/search',[ShopController::class,'search'])
+    ->name('search');
 
 Route::get('/detail/{shop_id}',[ShopController::class,'detail']);
 Route::get('/logout',[AuthController::class,'destroy'])
@@ -35,7 +36,7 @@ Route::delete('/favorite/destroy/{shop}',[FavoriteController::class,'destroy'])
     ->name('unfavorite');
 
 Route::get('/mypage',[AuthController::class,'index'])
-    ->middleware('auth');
+    ->middleware('auth','verified');
 
 Route::post('/reservation/store/{shop}',[ReservationController::class,'store'])
     ->name('reservation');

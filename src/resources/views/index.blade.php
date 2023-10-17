@@ -28,7 +28,7 @@
 
         <div class="search__item">
             <div class="search__item-button"></div>
-            <label class="search__item-lavel">
+            <label class="search__item-label">
                 <input type="text" name="word" class="search__item-input" placeholder="Search ..." value="{{ request('word') }}">
             </label>
         </div>
@@ -55,12 +55,12 @@
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="position" value="0">
-                                    <button type="submit" class="shop__button-favorite-btn--red"></button>
+                                    <button type="submit" class="shop__button-favorite-btn--red" title="お気に入り削除"></button>
                                 </form>
                             @else
                                 <form action="{{ route('favorite', $shop) }}" method="post" class="shop__button-favorite">
                                     @csrf
-                                    <button type="submit" class="shop__button-favorite-btn"></button>
+                                    <button type="submit" class="shop__button-favorite-btn" title="お気に入り追加"></button>
                                 </form>
                             @endif
                         @else

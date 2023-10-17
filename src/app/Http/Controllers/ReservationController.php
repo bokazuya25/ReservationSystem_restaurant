@@ -27,4 +27,16 @@ class ReservationController extends Controller
         $reservation->delete();
         return back();
     }
+
+    public function edit(Reservation $reservation){
+        $shop = Shop::find($reservation->shop_id);
+        $backRoute = '/mypage';
+        return view('detail',compact('reservation','shop','backRoute'));
+    }
+
+    public function update(Request $request,Reservation $reservation){
+        $edit = $request->all();
+        Reservation::find($reservation->id)->update($edit);
+        return redirect('/done');
+    }
 }

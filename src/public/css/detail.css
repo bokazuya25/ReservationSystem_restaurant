@@ -4,6 +4,10 @@ main {
     justify-content: space-between;
 }
 
+header {
+    width: 48%;
+}
+
 .detail__wrap {
     width: 48%;
     margin-top: 30px;
@@ -52,7 +56,7 @@ main {
 .reservation__wrap {
     width: 45%;
     background-color: rgb(63, 90, 242);
-    margin-top: -40px;
+    margin-top: -70px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;

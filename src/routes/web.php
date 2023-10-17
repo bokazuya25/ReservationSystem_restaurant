@@ -42,3 +42,7 @@ Route::post('/reservation/store/{shop}',[ReservationController::class,'store'])
     ->name('reservation');
 Route::delete('/reservation/destroy/{reservation}',[ReservationController::class,'destroy'])
     ->name('reservation.destroy');
+Route::get('/reservation/edit/{reservation}',[ReservationController::class,'edit'])
+    ->name('reservation.edit');
+Route::post('/reservation/update/{reservation}',[ReservationController::class,'update'])
+    ->name('reservation.update');

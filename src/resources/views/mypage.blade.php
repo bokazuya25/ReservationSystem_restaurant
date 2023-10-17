@@ -14,13 +14,20 @@
                 <div class="reservation__content">
                     <div class="reservation__header">
                         <p class="header__title">予約{{ $loop->iteration }}</p>
-                        <form action="{{ route('reservation.destroy',$reservation) }}" method="post"  class="header__form">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="form__button" onclick="return confirmCancel()">
-                                <img src="{{ asset('images/batsu.svg') }}" alt="予約キャンセル" class="form__button-img">
-                            </button>
-                        </form>
+                        <div class="reservation__header-button">
+                            <form action="{{ route('reservation.edit',$reservation) }}" method="get" class="header__form">
+                                <button type="submit" class="form__button--edit" onclick="return confirmEdit()" title="予約変更">
+                                    <img src="{{ asset('images/edit.svg') }}" alt="予約変更" class="form__button-img">
+                                </button>
+                            </form>
+                            <form action="{{ route('reservation.destroy',$reservation) }}" method="post"  class="header__form">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="form__button--cancel" onclick="return confirmCancel()" title="予約キャンセル">
+                                    <img src="{{ asset('images/batsu.svg') }}" alt="予約キャンセル" class="form__button-img">
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     <table class="reservation__table">
                         <tr>
@@ -62,7 +69,7 @@
                                     <form action="{{ route('unfavorite',$shop) }}" method="post" class="shop__button-favorite">
                                         @csrf
                                         @method('delete')
-                                            <button type="submit" class="shop__button-favorite-btn--red"></button>
+                                            <button type="submit" class="shop__button-favorite-btn--red" title="お気に入り削除"></button>
                                     </form>
                                 @endif
                             </div>

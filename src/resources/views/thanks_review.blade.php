@@ -7,9 +7,8 @@
 @section('content')
     <div class="content__wrap">
         <p class="content__text">
-            レビューを投稿しました<br>
-            ありがとうございました
+            レビューを投稿しました<br>ありがとうございました
         </p>
-        <a class="content__button" href="/">戻る</a>
+        <a class="content__button" href="/mypage">戻る</a>
     </div>
 @endsection

@@ -1,0 +1,142 @@
+main {
+    margin: 10vh auto 0;
+    transform: translateY(-10%);
+}
+
+.review__wrap {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 600px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px gray;
+    background-color: #fff;
+}
+
+.review__header {
+    background-color: rgb(63, 90, 242);
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 15px;
+}
+
+.review__content-wrap {
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+
+.review__content {
+    display: flex;
+    border-bottom: 1px solid gray;
+    padding: 10px 0;
+}
+
+.review__title {
+    width: 30%;
+    padding: 0 10px;
+}
+
+.review__title--vertical-center {
+    padding-top: 20px;
+}
+
+.review__area {
+    width: 70%;
+    padding-left: 15px;
+    padding-right: 5px;
+}
+
+.shop__image {
+    width: 100%;
+}
+
+.reservation__group {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: gray;
+}
+
+.shop__name,
+.shop__detail {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.shop__detail {
+    font-size: 12px;
+    color: gray;
+}
+
+.review__rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.rating__star {
+    font-size: 40px;
+    color: #d4d4d4;
+    transition: color 0.2s;
+    display: none;
+}
+
+.rating__star-label {
+    color: #d2d2d2;
+    font-size: 40px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.rating__star-label:hover,
+.rating__star-label:hover ~ .rating__star-label,
+.rating__star:checked ~ .rating__star-label {
+    color: #ffca00;
+}
+
+.review__textarea {
+    border: 1px solid grey;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.form__button {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.form__button-btn:hover,
+.back__button:hover {
+    opacity: 0.8;
+}
+
+.form__button-btn {
+    display: inline-block;
+    width: 100px;
+    padding: 5px 0;
+    font-size: 14px;
+    background-color: rgb(63, 90, 242);
+    border: 1px solid rgb(63, 90, 242);
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.back__button {
+    display: inline-block;
+    width: 100px;
+    padding: 5px 0;
+    font-size: 14px;
+    margin-right: 30px;
+    text-decoration: none;
+    background-color: grey;
+    border: 1px solid grey;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}

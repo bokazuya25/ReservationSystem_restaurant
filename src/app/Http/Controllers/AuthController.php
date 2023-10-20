@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Shop;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,11 +20,26 @@ class AuthController extends Controller
 
     public function index()
     {
-        $reservations = Auth::user()->reservations()->with('shop')->orderBy('date','asc')->orderBy('time','asc')->get();
+        $reservations = $this->getReservationsByStatus(0);
+        $histories = $this->getReservationsByStatus(1);
 
-        $favorites = Auth::user()->favorites()->pluck('shop_id')->toArray();
-        $shops = Shop::with(['area','genre'])->whereIn('id',$favorites)->get();
+        $favorites = Auth::user()->favorites()
+            ->pluck('shop_id')
+            ->toArray();
 
-        return view('mypage', compact('reservations','shops', 'favorites'));
+        $shops = Shop::with(['area', 'genre'])
+            ->whereIn('id', $favorites)
+            ->get();
+
+        return view('mypage', compact('reservations','histories', 'shops', 'favorites'));
+    }
+
+    private function getReservationsByStatus($status){
+        return Auth::user()->reservations()
+            ->where('status', $status)
+            ->with(['shop','review'])
+            ->orderBy('date', 'asc')
+            ->orderBy('time', 'asc')
+            ->get();
     }
 }

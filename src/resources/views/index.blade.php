@@ -55,17 +55,23 @@
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="position" value="0">
-                                    <button type="submit" class="shop__button-favorite-btn--red" title="お気に入り削除"></button>
+                                    <button type="submit" class="shop__button-favorite-btn" title="お気に入り削除">
+                                        <img class="favorite__btn-image" src="{{ asset('images/heart_color.svg') }}">
+                                    </button>
                                 </form>
                             @else
                                 <form action="{{ route('favorite', $shop) }}" method="post" class="shop__button-favorite">
                                     @csrf
-                                    <button type="submit" class="shop__button-favorite-btn" title="お気に入り追加"></button>
+                                    <button type="submit" class="shop__button-favorite-btn" title="お気に入り追加">
+                                        <img class="favorite__btn-image" src="{{ asset('images/heart.svg') }}">
+                                    </button>
                                 </form>
                             @endif
                         @else
                             <button type="button" onclick="location.href='/login'"
-                                class="shop__button-favorite-btn"></button>
+                                class="shop__button-favorite-btn">
+                                <img class="favorite__btn-image" src="{{ asset('images/heart_color.svg') }}">
+                            </button>
                         @endif
                     </div>
                 </div>

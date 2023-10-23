@@ -13,11 +13,6 @@ header {
     margin-top: 30px;
 }
 
-.detail__header {
-    display: flex;
-    align-items: center;
-}
-
 .header__back {
     display: inline-block;
     border-radius: 5px;
@@ -37,8 +32,76 @@ header {
     padding-left: 10px;
 }
 
+.header__review {
+    text-decoration: none;
+}
+
+.rating__star {
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+    white-space: nowrap;
+    color: rgb(225,225,225);
+    font-size: 28px;
+}
+
+.rating__star::before,
+.rating__star::after {
+    content: "★★★★★";
+}
+
+.rating__star::after {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #fa0;
+    font-size: 28px;
+    width: var(--star-width);
+}
+
+.rating__number {
+    font-size: 28px;
+    color: #fa0;
+    font-weight: bold;
+}
+
+.review__count {
+    text-decoration: none;
+    color: rgb(28, 65, 251);
+}
+
+.review__count:hover {
+    text-decoration: underline;
+    color: #fa0;
+}
+
+.review__count::before {
+    content: "";
+    background: url(../images/review_lightcoral.svg) no-repeat;
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-left:10px;
+    margin-right: 5px;
+}
+
+.favorite__count::before {
+    content: "";
+    background: url(../images/heart_color.svg) no-repeat;
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-left:10px;
+    margin-right: 5px;
+}
+
 .detail__image {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .detail__image-img {
@@ -51,6 +114,10 @@ header {
 
 .detail__tag-info {
     padding-right: 10px;
+}
+
+.detail__outline-text {
+    margin: 0;
 }
 
 .reservation__wrap {
@@ -116,7 +183,7 @@ header {
     color: #fff;
     background-color: rgb(28, 65, 251);
     border: none;
-    border-bottom-right-radius:3px;
+    border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     cursor: pointer;
     font-size: 16px;
@@ -128,7 +195,7 @@ header {
     color: #fff;
     background-color: rgb(28, 65, 251);
     border: none;
-    border-bottom-right-radius:3px;
+    border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     cursor: auto;
 }
@@ -140,7 +207,7 @@ header {
 }
 
 .reservation__button-link:visited {
-    color:inherit;
+    color: inherit;
 }
 
 .reservation__button-btn:hover,

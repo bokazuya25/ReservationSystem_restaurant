@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use App\Models\Area;
+use App\Models\Favorite;
 use App\Models\Genre;
 use App\Models\Reservation;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,6 +68,13 @@ class ShopController extends Controller
         $shop = Shop::find($request->shop_id);
         $from = $request->input('from');
 
+        $shopRatingIds = Reservation::where('shop_id',$request->shop_id)->pluck('id');
+        $avgRating = round(Review::whereIn('reservation_id',$shopRatingIds)->avg('rating'),1);
+        $countComments = Review::whereIn('reservation_id',$shopRatingIds)
+            ->whereNotNull('comment')
+            ->count();
+        $countFavorites = Favorite ::where('shop_id',$request->shop_id)->count();
+
         $backRoute = '/';
         switch ($from) {
             case 'index':
@@ -75,6 +84,6 @@ class ShopController extends Controller
                 $backRoute = '/mypage';
                 break;
         }
-        return view('detail', compact('shop', 'backRoute'));
+        return view('detail', compact('shop', 'avgRating' ,'countComments','countFavorites','backRoute'));
     }
 }

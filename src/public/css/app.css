@@ -48,6 +48,10 @@ header {
     box-shadow: 2px 2px 5px gray;
 }
 
+.drawer__open:hover {
+    opacity: 0.8;
+}
+
 /* ハンバーガーメニューのアイコン */
 .drawer__open span,
 .drawer__open span:before,
@@ -119,6 +123,10 @@ header {
     font-size: 28px;
     text-align: center;
     padding-bottom: 12px;
+}
+
+.nav__item:hover {
+    opacity: 0.8;
 }
 
 .nav__item-link {

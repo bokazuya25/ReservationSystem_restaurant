@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Shop;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,8 +31,17 @@ class ReservationController extends Controller
 
     public function edit(Reservation $reservation){
         $shop = Shop::find($reservation->shop_id);
+
+        $shopRatingIds = Reservation::where('shop_id', $reservation->shop_id)->pluck('id');
+        $avgRating = round(Review::whereIn('reservation_id', $shopRatingIds)->avg('rating'), 1);
+        $countComments = Review::whereIn('reservation_id', $shopRatingIds)
+            ->whereNotNull('comment')
+            ->count();
+        $countFavorites = Favorite::where('shop_id', $reservation->shop_id)->count();
+
+
         $backRoute = '/mypage';
-        return view('detail',compact('reservation','shop','backRoute'));
+        return view('detail',compact('reservation','shop','avgRating','countComments','countFavorites','backRoute'));
     }
 
     public function update(Request $request,Reservation $reservation){

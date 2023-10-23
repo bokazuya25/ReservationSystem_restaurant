@@ -121,7 +121,9 @@
                                     <form action="{{ route('unfavorite',$shop) }}" method="post" class="shop__button-favorite">
                                         @csrf
                                         @method('delete')
-                                            <button type="submit" class="shop__button-favorite-btn--red" title="お気に入り削除"></button>
+                                            <button type="submit" class="shop__button-favorite-btn" title="お気に入り削除">
+                                                <img class="favorite__btn-image" src="{{ asset('images/heart_color.svg') }}">
+                                            </button>
                                     </form>
                                 @endif
                             </div>

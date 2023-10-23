@@ -141,6 +141,7 @@
 .shop__button {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 10px 0;
 }
 
@@ -153,26 +154,24 @@
     border-radius: 5px;
     color: #fff;
     padding: 0 16px;
+    height: 30px;
     cursor: pointer;
     font-size: 12px;
 }
 
-.shop__button-favorite-btn {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    background: url(../images/heart.svg) no-repeat;
-    background-position: 0 0;
-    cursor: pointer;
-    border: none;
+.shop__button-detail:hover {
+    opacity: 0.8;
 }
 
-.shop__button-favorite-btn--red {
+.shop__button-favorite-btn {
     display: inline-block;
-    width: 25px;
-    height: 25px;
-    background: url(../images/heart_color.svg) no-repeat;
-    background-position: 0 0;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     border: none;
+    background-color: #fff;
+}
+
+.shop__button-favorite-btn:hover {
+    opacity: 0.6;
 }

@@ -90,3 +90,7 @@ main {
     padding: 3px 10px;
     cursor: pointer;
 }
+
+.form__item-button:hover {
+    opacity: 0.8;
+}

@@ -18,7 +18,7 @@ main {
     margin: 0;
     padding-top: 80px;
     padding-bottom: 40px;
-    font-size: 20px;
+    font-size: 2rem;
 }
 
 .content__button{
@@ -26,7 +26,7 @@ main {
     background-color: rgb(63, 90, 242);
     border: 1px solid rgb(63, 90, 242);
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 1.2rem;
     padding: 3px 10px;
     color: #fff;
     cursor: pointer;

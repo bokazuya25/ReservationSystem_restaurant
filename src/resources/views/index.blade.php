@@ -77,6 +77,10 @@
                 </div>
             </div>
         @endforeach
+        <div class="shop__content dummy"></div>
+        <div class="shop__content dummy"></div>
+        <div class="shop__content dummy"></div>
+        <div class="shop__content dummy"></div>
     </div>
     <script src="{{ asset('js/search.js') }}"></script>
 @endsection

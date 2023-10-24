@@ -17,6 +17,7 @@ main {
     color: #fff;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    font-size: 1.6rem;
     padding: 15px;
 }
 
@@ -27,7 +28,7 @@ main {
 .form__input-item {
     display: inline-block;
     width: 250px;
-    font-size: 16px;
+    font-size: 1.6rem;
     border: none;
     outline: none;
     border-bottom: 1px solid black;
@@ -43,7 +44,7 @@ main {
 .error__item {
     margin-bottom: 15px;
     color: red;
-    font-size: 14px;
+    font-size: 1.4rem;
     margin-left: 38px;
 }
 

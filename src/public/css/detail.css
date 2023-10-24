@@ -27,7 +27,7 @@ header {
 }
 
 .header__shop-name {
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: bold;
     padding-left: 10px;
 }
@@ -42,7 +42,7 @@ header {
     display: inline-block;
     white-space: nowrap;
     color: rgb(225,225,225);
-    font-size: 28px;
+    font-size: 2.8rem;
 }
 
 .rating__star::before,
@@ -58,19 +58,24 @@ header {
     overflow: hidden;
     white-space: nowrap;
     color: #fa0;
-    font-size: 28px;
+    font-size: 2.8rem;
     width: var(--star-width);
 }
 
 .rating__number {
-    font-size: 28px;
+    font-size: 2.8rem;
     color: #fa0;
     font-weight: bold;
 }
 
 .review__count {
     text-decoration: none;
+    font-size: 1.6rem;
     color: rgb(28, 65, 251);
+}
+
+.favorite__count {
+    font-size: 1.6rem;
 }
 
 .review__count:hover {
@@ -110,6 +115,7 @@ header {
 
 .detail__tag {
     display: flex;
+    font-size: 1.6rem;
 }
 
 .detail__tag-info {
@@ -118,6 +124,7 @@ header {
 
 .detail__outline-text {
     margin: 0;
+    font-size: 1.6rem;
 }
 
 .reservation__wrap {
@@ -135,7 +142,7 @@ header {
 
 .reservation__title {
     color: #fff;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -162,7 +169,7 @@ header {
 
 .reservation__area {
     padding: 20px;
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 
 .table__header {

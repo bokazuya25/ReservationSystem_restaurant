@@ -3,7 +3,7 @@
     border-radius: 5px;
     box-shadow: 2px 2px 5px gray;
     background-color: #fff;
-    font-size: 12px;
+    font-size: 1.2rem;
     width: 50%;
 }
 
@@ -34,7 +34,7 @@
     background-color: #fff;
     color: black;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 1.2rem;
 }
 
 .select-box__item:focus {
@@ -98,7 +98,7 @@
 
 .shop__wrap {
     display: flex;
-    gap: 20px 15px;
+    gap: 15px 1%;
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -125,11 +125,12 @@
 
 .shop__title {
     font-weight: bold;
+    font-size: 1.6rem;
 }
 
 .shop__tag {
     display: flex;
-    font-size: 12px;
+    font-size: 1.2rem;
     margin-top: 5px;
 }
 
@@ -156,7 +157,7 @@
     padding: 0 16px;
     height: 30px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 1.2rem;
 }
 
 .shop__button-detail:hover {
@@ -174,4 +175,8 @@
 
 .shop__button-favorite-btn:hover {
     opacity: 0.6;
+}
+
+.dummy {
+    visibility: hidden;
 }

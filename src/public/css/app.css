@@ -1,8 +1,13 @@
+html {
+    font-size: 62.5%;
+}
+
+
 body {
     max-width: 1280px;
     margin: 0 auto;
     background-color: #eee;
-    padding:0 75px 30px 75px;
+    padding: 0 75px 30px 75px;
 }
 
 header {
@@ -120,7 +125,7 @@ header {
 }
 
 .nav__item {
-    font-size: 28px;
+    font-size: 2.8rem;
     text-align: center;
     padding-bottom: 12px;
 }
@@ -136,7 +141,7 @@ header {
 }
 
 .header__logo {
-    font-size: 28px;
+    font-size: 2.8rem;
     color: rgb(63, 90, 242);
     padding-left: 16px;
     font-weight: bold;

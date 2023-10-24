@@ -5,7 +5,7 @@
 }
 
 .header__text {
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
@@ -13,15 +13,19 @@
     text-align: center;
 }
 
+.body__text {
+    font-size: 1.6rem;
+}
+
 .alert-success {
-    font-size: 20px;
+    font-size: 2rem;
     color: rgb(38,81,207);
 }
 
 .back__button {
     display: block;
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 1.2rem;
     color: rgb(38, 81, 207);
     text-decoration: none;
 }
@@ -41,6 +45,7 @@
     border: 2px solid darkgray;
     border-radius: 5px;
     background-color: #eee;
+    font-size: 1.6rem;
 }
 
 .form__input-button {

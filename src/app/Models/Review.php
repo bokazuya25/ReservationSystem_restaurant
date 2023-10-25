@@ -14,7 +14,7 @@ class Review extends Model
         'comment',
     ];
 
-    public function reservations() {
+    public function reservation() {
         return $this->belongsTo(Reservation::class);
     }
 

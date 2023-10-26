@@ -11,7 +11,7 @@
                 <option value="">All area</option>
                 @foreach ($areas as $area)
                     <option class="select-box__option" value="{{ $area->id }}"
-                        {{ request('area') == $area->id ? 'selected' : '' }}>{{ $area->area }}
+                        {{ request('area') == $area->id ? 'selected' : '' }}>{{ $area->name }}
                     </option>
                 @endforeach
             </select>
@@ -21,7 +21,7 @@
             <select name="genre" class="select-box__item">
                 <option value="">All genre</option>
                 @foreach ($genres as $genre)
-                    <option value="{{ $genre->id }}" {{ request('genre') == $genre->id ? 'selected' : ''}}>{{ $genre->genre }}</option>
+                    <option value="{{ $genre->id }}" {{ request('genre') == $genre->id ? 'selected' : ''}}>{{ $genre->name }}</option>
                 @endforeach
             </select>
         </label>
@@ -43,15 +43,14 @@
                 <div class="shop__item">
                     <span class="shop__title">{{ $shop->name }}</span>
                     <div class="shop__tag">
-                        <p class="shop__tag-info">#{{ $shop->area->area }}</p>
-                        <p class="shop__tag-info">#{{ $shop->genre->genre }}</p>
+                        <p class="shop__tag-info">#{{ $shop->area->name }}</p>
+                        <p class="shop__tag-info">#{{ $shop->genre->name }}</p>
                     </div>
                     <div class="shop__button">
                         <a href="/detail/{{ $shop->id }}?from=index" class="shop__button-detail">詳しくみる</a>
                         @if (Auth::check())
                             @if (in_array($shop->id, $favorites))
-                                <form action="{{ route('unfavorite', $shop) }}" method="post"
-                                    class="shop__button-favorite">
+                                <form action="{{ route('unfavorite', $shop) }}" method="post" class="shop__button-favorite">
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="position" value="0">
@@ -68,9 +67,8 @@
                                 </form>
                             @endif
                         @else
-                            <button type="button" onclick="location.href='/login'"
-                                class="shop__button-favorite-btn">
-                                <img class="favorite__btn-image" src="{{ asset('images/heart_color.svg') }}">
+                            <button type="button" onclick="location.href='/login'" class="shop__button-favorite-btn">
+                                <img class="favorite__btn-image" src="{{ asset('images/heart.svg') }}">
                             </button>
                         @endif
                     </div>

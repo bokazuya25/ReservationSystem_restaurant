@@ -14,7 +14,11 @@
             <div class="header__review">
                 <span class="rating__star" data-rate="{{ number_format($avgRating,1) }}"></span>
                 <span class="rating__number">{{ number_format($avgRating,1) }}</span>
-                <a href="#" class="review__count" title="レビューを見る">{{ $countComments }} 件</a>
+                @if ($countComments)
+                    <a href="/review/shop/{{ $shop->id }}" class="review__count" title="レビューを見る">{{ $countComments }} 件</a>
+                @else
+                    <span class="review__count-none">{{ $countComments }} 件</span>
+                @endif
                 <span class="favorite__count">{{ $countFavorites }} 人</span>
             </div>
         </div>
@@ -22,8 +26,8 @@
             <img src="{{ $shop->image_url }}" alt="イメージ画像" class="detail__image-img">
         </div>
         <div class="detail__tag">
-            <p class="detail__tag-info">#{{ $shop->area->area }}</p>
-            <p class="detail__tag-info">#{{ $shop->genre->genre }}</p>
+            <p class="detail__tag-info">#{{ $shop->area->name }}</p>
+            <p class="detail__tag-info">#{{ $shop->genre->name }}</p>
         </div>
         <div class="detail__outline">
             <p class="detail__outline-text">{{ $shop->outline }}</p>

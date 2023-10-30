@@ -1,6 +1,7 @@
 main {
     margin: 10vh auto 0;
     transform: translateY(-10%);
+    font-size: 1.6rem;
 }
 
 .review__wrap {

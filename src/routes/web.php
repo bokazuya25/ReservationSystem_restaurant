@@ -25,6 +25,7 @@ Route::get('/', [ShopController::class, 'index']);
 Route::get('/search', [ShopController::class, 'search'])->name('search');
 
 Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
+Route::get('/review/shop/{shop_id}', [ReviewController::class, 'list']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/logout', [AuthController::class, 'destroy']);
@@ -46,3 +47,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/store/{reservation}', [ReviewController::class, 'store'])->name('review.store');
     });
 });
+
+Route::get('/admin/index', function(){
+    return view('admin.index');
+})->middleware(['auth','role:admin'])->name('admin.index');
+
+Route::get('/admin/edit', function () {
+    return view('admin.edit');
+})->middleware(['auth', 'role:admin'])->name('admin.edit');
+
+Route::get('/writer/edit', function () {
+    return view('admin.edit');
+})->middleware(['auth', 'role:writer'])->name('writer.edit');

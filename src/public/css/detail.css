@@ -74,6 +74,11 @@ header {
     color: rgb(28, 65, 251);
 }
 
+.review__count-none {
+    text-decoration: none;
+    font-size: 1.6rem;
+}
+
 .favorite__count {
     font-size: 1.6rem;
 }
@@ -83,7 +88,8 @@ header {
     color: #fa0;
 }
 
-.review__count::before {
+.review__count::before,
+.review__count-none::before {
     content: "";
     background: url(../images/review_lightcoral.svg) no-repeat;
     vertical-align: middle;

@@ -20,8 +20,8 @@ class AuthController extends Controller
 
     public function index()
     {
-        $reservations = $this->getReservationsByStatus(0);
-        $histories = $this->getReservationsByStatus(1);
+        $reservations = $this->getReservationsByStatus('予約');
+        $histories = $this->getReservationsByStatus('来店');
 
         $favorites = Auth::user()->favorites()
             ->pluck('shop_id')

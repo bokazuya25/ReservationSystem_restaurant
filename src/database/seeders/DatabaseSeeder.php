@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Favorite;
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,5 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AreasTableSeeder::class);
         $this->call(GenresTableSeeder::class);
         $this->call(ShopsTableSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(AdminSeeder::class);
+        $this->call(FavoritesTableSeeder::class);
+        $this->call(ReservationsTableSeeder::class);
+        $this->call(ReviewsTableSeeder::class);
     }
 }

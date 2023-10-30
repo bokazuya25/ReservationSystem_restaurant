@@ -18,6 +18,7 @@ class ReservationController extends Controller
         $reservation->date = $request->input('date');
         $reservation->time = $request->input('time');
         $reservation->number = $request->input('number');
+        $reservation->status = "予約";
         $reservation->save();
 
         return redirect('/done');
@@ -39,8 +40,8 @@ class ReservationController extends Controller
             ->count();
         $countFavorites = Favorite::where('shop_id', $reservation->shop_id)->count();
 
-
         $backRoute = '/mypage';
+
         return view('detail',compact('reservation','shop','avgRating','countComments','countFavorites','backRoute'));
     }
 

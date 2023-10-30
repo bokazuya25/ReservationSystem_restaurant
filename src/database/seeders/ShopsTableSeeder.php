@@ -135,7 +135,7 @@ class ShopsTableSeeder extends Seeder
             'name' => '福助',
             'area_id' => '2',
             'genre_id' => '1',
-            'outline' => 'ミシュラン掲載店で磨いた、1職人の旨さへのこだわりはもちろん、 食事をゆっくりと楽しんでいただける空間作りも意識し続けております。 接待や大切なお食事にはぜひご利用ください。',
+            'outline' => 'ミシュラン掲載店で磨いた、寿司職人の旨さへのこだわりはもちろん、 食事をゆっくりと楽しんでいただける空間作りも意識し続けております。 接待や大切なお食事にはぜひご利用ください。',
             'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg'
         ];
         DB::table('shops')->insert($param);

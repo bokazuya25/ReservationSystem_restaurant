@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Shop;
+use App\Models\Favorite;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
@@ -32,5 +33,18 @@ class ReviewController extends Controller
         $review->save();
 
         return view('thanks_review');
+    }
+
+    public function list(Request $request) {
+
+        $shop = shop::find($request->shop_id);
+
+        $shopReservationIds = Reservation::where('shop_id',$request->shop_id)->pluck('id');
+        $shopReviews = Review::whereIn('reservation_id',$shopReservationIds)->get();
+        $avgRating = round(Review::whereIn('reservation_id', $shopReservationIds)->avg('rating'), 1);
+
+        $countFavorites = Favorite::where('shop_id', $request->shop_id)->count();
+
+        return view('review_list',compact('shop','shopReviews','avgRating'));
     }
 }

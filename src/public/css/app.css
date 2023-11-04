@@ -2,7 +2,6 @@ html {
     font-size: 62.5%;
 }
 
-
 body {
     max-width: 1280px;
     margin: 0 auto;
@@ -15,10 +14,20 @@ header {
     justify-content: space-between;
     align-items: center;
     position: sticky;
-    padding: 30px 0;
+    padding: 30px 10px;
     top: 0;
     background-color: #eee;
     z-index: 10;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0 0 30px 0;
+    }
+
+    header {
+        padding: 30px 10%;
+    }
 }
 
 .header__left {
@@ -31,14 +40,10 @@ header {
     align-items: center;
 }
 
-/* ここから下がハンバーガーメニューに関するCSS */
-
-/* チェックボックスを非表示にする */
 .drawer__hidden {
     display: none;
 }
 
-/* ハンバーガーアイコンの設置スペース */
 .drawer__open {
     display: flex;
     height: 32px;
@@ -46,7 +51,7 @@ header {
     justify-content: center;
     align-items: center;
     position: relative;
-    z-index: 100; /* 重なり順を一番上にする */
+    z-index: 100;
     cursor: pointer;
     background-color: rgb(63, 90, 242);
     border-radius: 5px;
@@ -57,7 +62,6 @@ header {
     opacity: 0.8;
 }
 
-/* ハンバーガーメニューのアイコン */
 .drawer__open span,
 .drawer__open span:before,
 .drawer__open span:after {
@@ -71,24 +75,20 @@ header {
     position: absolute;
 }
 
-/* 三本線の一番上の棒の位置調整 */
 .drawer__open span:before {
     bottom: 6px;
     width: 10px;
 }
 
-/* 三本線の一番下の棒の位置調整 */
 .drawer__open span:after {
     top: 6px;
     width: 6px;
 }
 
-/* アイコンがクリックされたら真ん中の線を透明にする */
 #drawer__input:checked ~ .drawer__open span {
     background: rgba(255, 255, 255, 0);
 }
 
-/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
 #drawer__input:checked ~ .drawer__open span::before {
     bottom: 0;
     transform: rotate(45deg);
@@ -101,33 +101,43 @@ header {
     width: 16px;
 }
 
-/* メニューのデザイン*/
 .nav__content {
     width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
-    right: 100%; /* メニューを画面の外に飛ばす */
+    right: 100%;
     z-index: 99;
     background: #fff;
     transition: 0.5s;
-    padding-top: 16%;
 }
 
-/* メニュー黒ポチを消す */
+#drawer__input:checked ~ .drawer__open {
+    z-index: 103;
+}
+
+#drawer__input:checked ~ .nav__content {
+    z-index: 102;
+}
+
 .nav__list {
     list-style: none;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* アイコンがクリックされたらメニューを表示 */
 #drawer__input:checked ~ .nav__content {
-    right: 0; /* メニューを画面に入れる */
+    right: 0;
 }
 
 .nav__item {
     font-size: 2.8rem;
     text-align: center;
     padding-bottom: 12px;
+    display: block;
 }
 
 .nav__item:hover {

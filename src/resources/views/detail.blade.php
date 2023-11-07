@@ -34,6 +34,10 @@
         </div>
     </div>
 
+    <div class="mobile-detail__wrap">
+        <button class="reservation__button-btn">予約する</button>
+    </div>
+
     <form action="{{ request()->is('*edit*') ? route('reservation.update', $reservation) : route('reservation', $shop) }}" method="post" class="reservation__wrap">
         @csrf
         <div class="reservation__content">

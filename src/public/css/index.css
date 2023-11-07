@@ -230,6 +230,7 @@
     .search__content {
         width: 100%;
         height: 30%;
+        min-height: 250px;
         position: fixed;
         top: -100%;
         left: 0;

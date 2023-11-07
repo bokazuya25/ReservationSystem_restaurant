@@ -1,6 +1,5 @@
 main {
-    margin: 20vh auto 0;
-    transform: translateY(-20%);
+    margin-top: 20px;
 }
 
 .auth__wrap {
@@ -55,6 +54,17 @@ main {
     width: 25px;
     height: 25px;
     background: url(../images/person.svg) no-repeat;
+    background-size: contain;
+    margin-right: 8px;
+    vertical-align: bottom;
+}
+
+.form__item-shop::before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url(../images/shop.svg) no-repeat;
     background-size: contain;
     margin-right: 8px;
     vertical-align: bottom;

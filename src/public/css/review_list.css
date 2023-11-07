@@ -38,41 +38,32 @@
     margin: 0;
 }
 
-.review__container {
+.review__wrap {
     width: 90%;
-    margin: 0 auto;
-    padding: 15px 0;
-}
-
-.shop__data {
-    display: flex;
-    border-bottom: 1px solid gray;
-    padding: 10px 0;
 }
 
 .review__content {
     display: flex;
     border: none;
     padding: 0;
+    padding-left: 10px;
 }
 
-.shop__image {
-    width: 30%;
-    padding: 0 10px;
+.shop__data {
+    border-bottom: 1px solid gray;
 }
 
-.shop__image-img {
-    width: 100%;
+.shop__name {
+    margin: 0;
+}
+
+.review__container {
+    border-bottom: 1px solid grey;
+    padding-bottom: 5px;
 }
 
 .shop__data-area {
     width: 70%;
     padding-left: 15px;
     padding-right: 5px;
-}
-
-.review__content-wrap {
-    width: 100%;
-    padding: 10px 0;
-    border-bottom: 1px solid grey;
 }

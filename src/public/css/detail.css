@@ -130,7 +130,12 @@ header {
 
 .detail__outline-text {
     margin: 0;
+    margin-bottom: 10px;
     font-size: 1.6rem;
+}
+
+.mobile-detail__wrap {
+    display: none;
 }
 
 .reservation__wrap {
@@ -226,4 +231,36 @@ header {
 .reservation__button-btn:hover,
 .reservation__button-link:hover {
     color: red;
+}
+
+@media screen and (max-width:768px) {
+    main {
+        display: block;
+    }
+
+    header {
+        width: 100%;
+    }
+
+    .detail__wrap {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .mobile-detail__wrap {
+        display: block;
+    }
+
+    .reservation__wrap {
+        display: none;
+    }
+
+    .reservation__button-btn {
+        display: block;
+        width: 50%;
+        max-width: 250px;
+        height: 40px;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
 }

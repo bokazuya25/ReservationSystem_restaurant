@@ -12,10 +12,10 @@
 
         <div class="review__content-wrap">
             <div class="review__content">
-                <div class="review__title">
+                <div class="review__title shop-image__wrap">
                     <img class="shop__image" src="{{ $shop->image_url }}" alt="イメージ写真">
                 </div>
-                <div class="review__area">
+                <div class="review__area review__detail">
                     <p class="reservation__group">来店日時
                         <span class="reservation__date">{{ $reservation->date }}</span>
                         <span class="reservation__time">{{ date('H:i',strtotime($reservation->time)) }}～</span>
@@ -29,7 +29,7 @@
                 @csrf
                 <div class="review__content">
                     <div class="review__title review__title--vertical-center">
-                        評価（5段階）
+                        評価
                     </div>
                     <div class="review__area">
                         <span class="review__rating">
@@ -43,7 +43,7 @@
 
                 <div class="review__content">
                     <div class="review__title">
-                        レビュー内容
+                        本文
                     </div>
                     <div class="review__area">
                         <textarea class="review__textarea" name="comment" rows="8">{{ $reservation->review->comment ?? '' }}</textarea>

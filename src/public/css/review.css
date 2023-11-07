@@ -1,11 +1,10 @@
 main {
-    margin: 10vh auto 0;
-    transform: translateY(-10%);
+    margin-top: 20px;
     font-size: 1.6rem;
 }
 
 .review__wrap {
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
     max-width: 600px;
     border: none;
@@ -31,12 +30,11 @@ main {
 .review__content {
     display: flex;
     border-bottom: 1px solid gray;
-    padding: 10px 0;
+    padding: 10px 0 10px 10px;
 }
 
 .review__title {
-    width: 30%;
-    padding: 0 10px;
+    width: 25%;
 }
 
 .review__title--vertical-center {
@@ -44,7 +42,7 @@ main {
 }
 
 .review__area {
-    width: 70%;
+    width: 75%;
     padding-left: 15px;
     padding-right: 5px;
 }
@@ -88,7 +86,7 @@ main {
 .rating__star-label {
     color: #d2d2d2;
     font-size: 4rem;
-    padding: 0 5px;
+    padding: 0;
     cursor: pointer;
 }
 
@@ -140,4 +138,19 @@ main {
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .shop-image__wrap {
+        display: none;
+    }
+
+    .review__detail {
+        width: 100%;
+        padding-left: 10px;
+    }
+
+    .review__area {
+        padding-left: 0;
+    }
 }

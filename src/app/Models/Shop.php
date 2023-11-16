@@ -12,6 +12,8 @@ class Shop extends Model
     protected $fillable = [
         'name',
         'outline',
+        'area_id',
+        'genre_id',
         'image_url',
     ];
 
@@ -33,5 +35,10 @@ class Shop extends Model
     public function genre()
     {
         return $this->belongsTo(Genre::class);
+    }
+
+    public function shopRepresentative()
+    {
+        return $this->hasOne(Shop_representatives::class, 'shop_id');
     }
 }

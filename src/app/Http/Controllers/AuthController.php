@@ -31,7 +31,25 @@ class AuthController extends Controller
             ->whereIn('id', $favorites)
             ->get();
 
-        return view('mypage', compact('reservations','histories', 'shops', 'favorites'));
+
+        $user = Auth::user();
+        $viewData = [
+            'user' =>$user,
+            'reservations' => $reservations,
+            'histories' => $histories,
+            'favorites' => $favorites,
+            'shops' => $shops
+        ];
+
+        if ($user->hasRole('admin')) {
+            $viewData['roleView'] = 'mypage.partials.admin';
+        }elseif ($user->hasRole('writer')) {
+            $viewData['roleView'] = 'mypage.partials.writer';
+        }else {
+            $viewData['roleView'] = 'mypage.partials.user';
+        }
+
+        return view('mypage.dashboard', $viewData);
     }
 
     private function getReservationsByStatus($status){

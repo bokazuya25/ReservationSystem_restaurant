@@ -27,7 +27,7 @@ class ShopsTableSeeder extends Seeder
             'name' => '牛助',
             'area_id' => '2',
             'genre_id' => '2',
-            'outline' => '2業界で20年間経験を積み、肉を熟知したマスターによる実力派2店。長年の実績とお付き合いをもとに、なかなか食べられない希少部位も仕入れております。また、ゆったりとくつろげる空間はお仕事終わりの一杯や女子会にぴったりです。',
+            'outline' => '焼肉業界で20年間経験を積み、肉を熟知したマスターによる実力派焼肉店。長年の実績とお付き合いをもとに、なかなか食べられない希少部位も仕入れております。また、ゆったりとくつろげる空間はお仕事終わりの一杯や女子会にぴったりです。',
             'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg'
         ];
         DB::table('shops')->insert($param);
@@ -54,7 +54,7 @@ class ShopsTableSeeder extends Seeder
             'name' => '志摩屋',
             'area_id' => '3',
             'genre_id' => '5',
-            'outline' => '5屋とは思えない店内にはカウンター席はもちろん、個室も用意してあります。5はこってり系・あっさり系ともに揃っています。その他豊富な一品料理やアルコールも用意しており、3としても利用できます。ぜひご来店をお待ちしております。',
+            'outline' => 'ラーメン屋とは思えない店内にはカウンター席はもちろん、個室も用意してあります。ラーメンはこってり系・あっさり系ともに揃っています。その他豊富な一品料理やアルコールも用意しており、居酒屋としても利用できます。ぜひご来店をお待ちしております。',
             'image_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/ramen.jpg'
         ];
         DB::table('shops')->insert($param);

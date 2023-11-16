@@ -16,7 +16,7 @@ class ReservationFactory extends Factory
      */
     public function definition()
     {
-        $randomDate = Carbon::now()->subWeek()->addDays(rand(0, 14))->toDateString();
+        $randomDate = Carbon::now()->subWeek(2)->addDays(rand(0, 16))->toDateString();
 
         $status = Carbon::parse($randomDate)->lte(Carbon::today()) ? '来店' : '予約';
 

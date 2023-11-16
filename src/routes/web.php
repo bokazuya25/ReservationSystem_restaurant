@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\WriterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,14 +51,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-Route::get('/admin/index', function(){
-    return view('admin.index');
-})->middleware(['auth','role:admin'])->name('admin.index');
+Route::post('/admin/register/shopRepresentative',[AdminController::class,'register'])->middleware(['auth','role:admin']);
+Route::get('/admin/user/index',[AdminController::class,'userShow'])->middleware(['auth','role:admin']);
+Route::get('admin/search-users/index',[AdminController::class,'search']);
 
-Route::get('/admin/edit', function () {
-    return view('admin.edit');
-})->middleware(['auth', 'role:admin'])->name('admin.edit');
+Route::view('/admin/register','admin.register_shopRepresentative')->middleware(['auth','role:admin'])->name('admin.register');
+Route::view('/admin/email-notification','admin.email_notification')->middleware(['auth','role:admin'])->name('admin.notification');
 
-Route::get('/writer/edit', function () {
-    return view('admin.edit');
-})->middleware(['auth', 'role:writer'])->name('writer.edit');
+Route::post('/admin/email-notification',[MailController::class,'sendNotification'])->name('send.notification');
+
+Route::get('/writer/shop-edit',[WriterController::class,'editShow'])->middleware('auth','role:admin|writer');
+Route::post('/writer/shop-edit',[WriterController::class,'create_and_edit'])->middleware('auth','role:admin|writer');
+
+Route::get('/writer/confirm/shop-reservation',[WriterController::class,'reservationShow'])->middleware('auth','role:admin|writer');
+
+Route::patch('/writer/update/shop-reservation',[WriterController::class,'update'])->middleware('auth','role:admin|writer');
+
+Route::delete('/writer/destroy/shop-reservation',[WriterController::class,'destroy'])->middleware('auth','role:admin|writer');

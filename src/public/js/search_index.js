@@ -11,23 +11,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function generateFavoriteButton(shop, isLoggedIn, favorites) {
+        let buttonImage = isLoggedIn && favorites.includes(shop.id) ? 'images/heart_color.svg' : 'images/heart.svg';
+        let buttonHtml = `<img class="favorite__btn-image" src="${buttonImage}">`;
+
         if (isLoggedIn) {
             if (favorites.includes(shop.id)) {
                 return `
                     <form action="/favorite/destroy/${shop.id}" method="post" class="shop__button-favorite">
                         <input type="hidden" name="_token" value="${csrfToken}">
                         <input type="hidden" name="_method" value="delete">
-                        <button type="submit" class="shop__button-favorite-btn--red"></button>
+                        <button type="submit" class="shop__button-favorite-btn">${buttonHtml}</button>
                     </form>`;
             } else {
                 return `
                     <form action="/favorite/store/${shop.id}" method="post" class="shop__button-favorite">
                         <input type="hidden" name="_token" value="${csrfToken}">
-                        <button type="submit" class="shop__button-favorite-btn"></button>
+                        <button type="submit" class="shop__button-favorite-btn">${buttonHtml}</button>
                     </form>`;
             }
         } else {
-            return `<button type="button" onclick="location.href='/login'" class="shop__button-favorite-btn"></button>`;
+            return `<button type="button" onclick="location.href='/login'" class="shop__button-favorite-btn">${buttonHtml}</button>`;
         }
     }
 
@@ -54,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             <div class="shop__item">
                                 <span class="shop__title">${escapeHTML(shop.name)}</span>
                                 <div class="shop__tag">
-                                    <p class="shop__tag-info">#${escapeHTML(shop.area.area)}</p>
-                                    <p class="shop__tag-info">#${escapeHTML(shop.genre.genre)}</p>
+                                    <p class="shop__tag-info">#${escapeHTML(shop.area.name)}</p>
+                                    <p class="shop__tag-info">#${escapeHTML(shop.genre.name)}</p>
                                 </div>
                                 <div class="shop__button">
                                     <a href="/detail/${shop.id}?from=index" class="shop__button-detail">詳しくみる</a>
@@ -65,10 +68,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>`;
                     shopWrap.insertAdjacentHTML("beforeend", shopElement);
                 });
+                addDummyElements();
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error.message);
             });
+    }
+
+    function addDummyElements() {
+        for (let i = 0; i < 4; i++) {
+            shopWrap.insertAdjacentHTML("beforeend", '<div class="shop__content dummy"></div>');
+        }
     }
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

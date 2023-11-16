@@ -34,10 +34,6 @@
         </div>
     </div>
 
-    <div class="mobile-detail__wrap">
-        <button class="reservation__button-btn">予約する</button>
-    </div>
-
     <form action="{{ request()->is('*edit*') ? route('reservation.update', $reservation) : route('reservation', $shop) }}" method="post" class="reservation__wrap">
         @csrf
         <div class="reservation__content">
@@ -91,12 +87,11 @@
             @if (Auth::check())
                 <button type="submit" class="reservation__button-btn" onclick="return confirmReservation()">{{ request()->is('*edit*') ? '予約内容を変更する' : '予約する' }}</button>
             @else
-                <button type="submit" class="reservation__button-btn--disabled" disabled>予約は<a href="/register"
-                        class="reservation__button-link">会員登録</a><a href="/login"
-                        class="reservation__button-link">ログイン</a>が必要です</button>
+                <button type="button" class="reservation__button-btn--disabled" disabled>予約は<a href="/register" class="reservation__button-link">会員登録</a><a href="/login" class="reservation__button-link">ログイン</a>が必要です</button>
             @endif
         </div>
     </form>
+
     <script src="{{ asset('js/detail.js') }}"></script>
     <script src="{{ asset('js/reservation.js') }}"></script>
 @endsection

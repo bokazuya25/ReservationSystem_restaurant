@@ -78,7 +78,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('content')
@@ -96,16 +95,15 @@
                         <a href="/detail/{{ $shop->id }}?from=index" class="shop__button-detail">詳しくみる</a>
                         @if (Auth::check())
                             @if (in_array($shop->id, $favorites))
-                                <form action="{{ route('unfavorite', $shop) }}" method="post" class="shop__button-favorite">
+                                <form action="{{ route('unfavorite', $shop) }}" method="post" enctype="application/x-www-form-urlencoded" class="shop__button-favorite form">
                                     @csrf
                                     @method('delete')
-                                    <input type="hidden" name="position" value="0">
                                     <button type="submit" class="shop__button-favorite-btn" title="お気に入り削除">
                                         <img class="favorite__btn-image" src="{{ asset('images/heart_color.svg') }}">
                                     </button>
                                 </form>
                             @else
-                                <form action="{{ route('favorite', $shop) }}" method="post" class="shop__button-favorite">
+                                <form action="{{ route('favorite', $shop) }}" method="post" enctype="application/x-www-form-urlencoded" class="shop__button-favorite form">
                                     @csrf
                                     <button type="submit" class="shop__button-favorite-btn" title="お気に入り追加">
                                         <img class="favorite__btn-image" src="{{ asset('images/heart.svg') }}">
@@ -127,5 +125,5 @@
         @endfor
 
     </div>
-    <script src="{{ asset('js/search.js') }}"></script>
+    <script src="{{ asset('js/search_index.js') }}"></script>
 @endsection

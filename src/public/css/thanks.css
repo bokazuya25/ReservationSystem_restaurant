@@ -1,6 +1,5 @@
 main {
-    margin: 20vh auto 0;
-    transform: translateY(-20%);
+    margin-top: 100px;
 }
 
 .content__wrap {

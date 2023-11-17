@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Reservation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -30,6 +31,6 @@ class ReservationReminder extends Mailable
      */
     public function build()
     {
-        return $this->view('予約リマインダー')->view('emails.reservation_reminder');
+        return $this->subject('予約リマインダー')->markdown('emails.reminder');
     }
 }

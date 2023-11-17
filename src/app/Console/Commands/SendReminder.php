@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Mail\ReservationReminder;
+use App\Models\Reservation;
 use Illuminate\Console\Command;
 
 class SendReminder extends Command
@@ -38,7 +39,7 @@ class SendReminder extends Command
      */
     public function handle()
     {
-        $reservations = Reservation::whereDate('reservation_date', today())->get();
+        $reservations = Reservation::whereDate('date', today())->get();
 
         foreach ($reservations as $reservation) {
             \Mail::to($reservation->user->email)->send(new ReservationReminder($reservation));

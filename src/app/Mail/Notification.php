@@ -19,7 +19,7 @@ class Notification extends Mailable
     public function __construct($user, $messageContent)
     {
         $this->user = $user;
-        $this->messageContent = $messageContent;
+        $this->messageContent = str_replace("\n"," \n",$messageContent);
     }
 
     /**
@@ -29,7 +29,7 @@ class Notification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.notification')
+        return $this->subject('Reseからのお知らせ')->markdown('emails.notification')
             ->with(['messageContent' => $this->messageContent,]);
     }
 }

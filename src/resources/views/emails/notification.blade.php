@@ -1,7 +1,7 @@
 @component('mail::message')
-    # Reseからのお知らせ
+# Reseからのお知らせ
 
-    {{ $messageContent }}
+{{ $messageContent }}
 
-    Thanks,{{ config('app.name') }}
+Thanks,{{ config('app.name') }}
 @endcomponent

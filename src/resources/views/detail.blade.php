@@ -40,9 +40,20 @@
             <p class="reservation__title">{{ request()->is('*edit*') ? '予約変更' : '予約' }}
             </p>
             <div class="form__content">
-                <input type="date" class="form__item" name="date"
-                    value="{{ request()->is('*edit*') ? $reservation->date : ''}}" required>
-                <select name="time" class="form__item" required>
+                <input type="date" id="datePicker" class="form__item" name="date"
+                    value="{{ request()->is('*edit*') ? $reservation->date : ''}}">
+                    <script>
+                        window.onload = function() {
+                            var today = new Date().toISOString().split('T')[0];
+                            document.getElementById("datePicker").setAttribute('min',today);
+                        };
+                    </script>
+                <div class="error__item">
+                    @error('date')
+                        <span class="error__message">{{ $message }}</span>
+                    @enderror
+                </div>
+                <select name="time" class="form__item">
                     <option value="" {{ request()->is('*edit*') && isset($reservation->time) ? '' : 'selected' }} disabled>-- 時間を選択してください --</option>
                     @foreach(['20:00', '20:30', '21:00', '21:30', '22:00'] as $time)
                         <option value="{{ $time }}" {{ request()->is('*edit*') && $time == date('H:i', strtotime($reservation->time)) ? 'selected' : '' }}>
@@ -50,7 +61,12 @@
                         </option>
                     @endforeach
                 </select>
-                <select name="number" class="form__item" required>
+                    <div class="error__item">
+                    @error('time')
+                        <span class="error__message">{{ $message }}</span>
+                    @enderror
+                </div>
+                <select name="number" class="form__item">
                     <option value="" {{ request()->is('*edit*') && isset($reservation->time) ? '' : 'selected' }} disabled>--人数を選択してください --</option>
                     @foreach(range(1, 5) as $number)
                         <option value="{{ $number }}" {{ request()->is('*edit*') && $number == $reservation->number ? 'selected' : ''}}>
@@ -58,6 +74,11 @@
                         </option>
                     @endforeach
                 </select>
+                <div class="error__item">
+                    @error('number')
+                        <span class="error__message">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
 
             <div class="reservation__group">

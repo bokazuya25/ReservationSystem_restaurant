@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use App\Models\Shop;
 use App\Models\Review;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
-    public function store(Shop $shop,Request $request)
+    public function store(Shop $shop,ReservationRequest $request)
     {
         $reservation = new Reservation();
         $reservation->shop_id = $shop->id;
@@ -45,7 +46,7 @@ class ReservationController extends Controller
         return view('detail',compact('reservation','shop','avgRating','countComments','countFavorites','backRoute'));
     }
 
-    public function update(Request $request,Reservation $reservation){
+    public function update(ReservationRequest $request,Reservation $reservation){
         $edit = $request->all();
         Reservation::find($reservation->id)->update($edit);
         return redirect('/done');

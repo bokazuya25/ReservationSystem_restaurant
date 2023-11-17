@@ -171,6 +171,13 @@ header {
     width: 200px;
 }
 
+.error__item {
+    margin-bottom: 15px;
+    color: red;
+    font-size: 1.4rem;
+    padding-left: 10px;
+}
+
 .reservation__group {
     background-color: rgb(84, 124, 243);
     color: #fff;

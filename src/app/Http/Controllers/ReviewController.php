@@ -14,7 +14,7 @@ class ReviewController extends Controller
     {
         $shop = Shop::find($reservation->shop_id);
 
-        return view('review', compact('reservation', 'shop'));
+        return view('reviews.index', compact('reservation', 'shop'));
     }
 
     public function store(Request $request, Reservation $reservation)
@@ -32,7 +32,7 @@ class ReviewController extends Controller
         }
         $review->save();
 
-        return view('thanks_review');
+        return view('reviews.thanks');
     }
 
     public function list(Request $request) {
@@ -45,6 +45,6 @@ class ReviewController extends Controller
 
         $countFavorites = Favorite::where('shop_id', $request->shop_id)->count();
 
-        return view('review_list',compact('shop','shopReviews','avgRating'));
+        return view('reviews.list',compact('shop','shopReviews','avgRating'));
     }
 }

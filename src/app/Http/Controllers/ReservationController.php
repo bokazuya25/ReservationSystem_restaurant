@@ -51,4 +51,12 @@ class ReservationController extends Controller
         Reservation::find($reservation->id)->update($edit);
         return redirect('/done');
     }
+
+    public function confirm($reservationId){
+        $reservation = Reservation::find($reservationId);
+        $reservation->status = '来店';
+        $reservation->save();
+
+        return redirect('/reservation/confirm/scan');
+    }
 }

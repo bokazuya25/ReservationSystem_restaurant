@@ -8,6 +8,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WriterController;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/thanks', 'auth.thanks');
 Route::view('/done', 'done');
+Route::view('/reservation/confirm/scan','scan');
 
 Route::get('/', [ShopController::class, 'index']);
 Route::get('/search', [ShopController::class, 'search'])->name('search');
@@ -68,3 +70,5 @@ Route::get('/writer/confirm/shop-reservation',[WriterController::class,'reservat
 Route::patch('/writer/update/shop-reservation',[WriterController::class,'update'])->middleware('auth','role:admin|writer');
 
 Route::delete('/writer/destroy/shop-reservation',[WriterController::class,'destroy'])->middleware('auth','role:admin|writer');
+
+Route::get('/reservation/confirm/{reservation}',[ReservationController::class,'confirm'])->middleware('signed')->name('reservation.confirm');

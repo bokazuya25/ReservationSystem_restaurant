@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/writer/shop_edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/shop_edit.css') }}">
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
         </div>
 
         <div class="edit__content-wrap">
-            <form action="/writer/shop-edit" method="post" class="edit__form">
+            <form action="/writer/shop-edit" method="post" enctype="multipart/form-data" class="edit__form">
                 @csrf
                 <div class="edit__content">
                     <div class="edit__title vertical-center">

@@ -106,7 +106,11 @@
         </div>
         <div class="reservation__button">
             @if (Auth::check())
-                <button type="submit" class="reservation__button-btn" onclick="return confirmReservation()">{{ request()->is('*edit*') ? '予約内容を変更する' : '予約する' }}</button>
+                @if(Auth::user()->hasRole('admin|writer'))
+                    <p class="reservation__message">予約は"ユーザー"の方のみ可能です</p>
+                @else
+                    <button type="submit" class="reservation__button-btn" onclick="return confirmReservation()">{{ request()->is('*edit*') ? '予約内容を変更する' : '予約する' }}</button>
+                @endif
             @else
                 <button type="button" class="reservation__button-btn--disabled" disabled>予約は<a href="/register" class="reservation__button-link">会員登録</a><a href="/login" class="reservation__button-link">ログイン</a>が必要です</button>
             @endif

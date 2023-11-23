@@ -6,7 +6,6 @@ body {
     max-width: 1280px;
     margin: 0 auto;
     background-color: #eee;
-    padding: 0 75px 30px 75px;
 }
 
 main {
@@ -14,7 +13,8 @@ main {
 }
 
 .content__wrap {
-    width: 400px;
+    width: 90%;
+    max-width: 400px;
     border: none;
     border-radius: 5px;
     text-align: center;

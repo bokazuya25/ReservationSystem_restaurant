@@ -38,4 +38,30 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     })
+
+    function confirmUpdate() {
+        return confirm('予約を更新しますか？');
+    }
+
+    let updateButtons = document.querySelectorAll('.update__button');
+        updateButtons.forEach(function (updateButtons) {
+        updateButtons.addEventListener('click', function (event) {
+            if (!confirmUpdate()) {
+                event.preventDefault();
+            }
+        });
+    })
+
+    function confirmDelete() {
+        return confirm('本当に予約をキャンセルしますか？');
+    }
+
+    let deleteButtons = document.querySelectorAll('.delete__button');
+        deleteButtons.forEach(function (deleteButtons) {
+        deleteButtons.addEventListener('click', function (event) {
+            if (!confirmDelete()) {
+                event.preventDefault();
+            }
+        });
+    })
 });

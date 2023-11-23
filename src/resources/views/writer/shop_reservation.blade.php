@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/writer/shop_reservation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/shop_reservation.css') }}">
 @endsection
 
 @section('content')
@@ -51,7 +51,7 @@
                             <td class="table__data">{{ $reservation->user->name }}</td>
                             <td class="table__data table__data-button">
                                 <input type="hidden" name="id" value="{{ $reservation->id }}">
-                                <button type="submit" class="update__button">更新</button>
+                                <button type="submit" onclick="return confirmUpdate()" class="update__button">更新</button>
                             </td>
                         </form>
                         <form action="/writer/destroy/shop-reservation" method="post">
@@ -59,7 +59,7 @@
                             @csrf
                             <td class="table__data table__data-button">
                                 <input type="hidden" name="id" value="{{ $reservation->id }}">
-                                <button type="submit" class="delete__button">削除</button>
+                                <button type="submit" onclick="return confirmDelete()" class="delete__button">削除</button>
                             </td>
                         </form>
                     </tr>
@@ -72,4 +72,5 @@
         </table>
     </div>
     {{ $reservations->links('vendor/pagination/paginate') }}
+    <script src="{{ asset('js/reservation.js') }}"></script>
 @endsection

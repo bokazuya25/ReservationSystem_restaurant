@@ -10,6 +10,7 @@ use App\Models\Shop_representatives;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class WriterController extends Controller
 {
@@ -36,7 +37,9 @@ class WriterController extends Controller
             $shop = $request->except(['_token', 'image_url']);
 
             if ($request->image_url) {
-                $shop['image_url'] = $request->input('image_url');
+                $path = $request->file('image_url')->store('reservationsystem-restaurant','s3');
+                $request->file('image_url');
+                $shop['image_url'] = Storage::disk('s3')->url($path);
             }
 
             Shop::find($shopRepresentative->shop_id)->update($shop);

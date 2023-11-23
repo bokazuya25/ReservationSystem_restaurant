@@ -31,10 +31,9 @@ class AuthController extends Controller
             ->whereIn('id', $favorites)
             ->get();
 
-
         $user = Auth::user();
         $viewData = [
-            'user' =>$user,
+            'user' => $user,
             'reservations' => $reservations,
             'histories' => $histories,
             'favorites' => $favorites,
@@ -43,21 +42,22 @@ class AuthController extends Controller
 
         if ($user->hasRole('admin')) {
             $viewData['roleView'] = 'mypage.partials.admin';
-        }elseif ($user->hasRole('writer')) {
+        } elseif ($user->hasRole('writer')) {
             $viewData['roleView'] = 'mypage.partials.writer';
-        }else {
+        } else {
             $viewData['roleView'] = 'mypage.partials.user';
         }
 
         return view('mypage.dashboard', $viewData);
     }
 
-    private function getReservationsByStatus($status){
+    private function getReservationsByStatus($status)
+    {
         return Auth::user()->reservations()
             ->where('status', $status)
-            ->with(['shop','review'])
-            ->orderBy('date', 'asc')
-            ->orderBy('time', 'asc')
+            ->with(['shop', 'review'])
+            ->orderBy('date', $status === '予約' ? 'asc' : 'desc')
+            ->orderBy('time', $status === '予約' ? 'asc' : 'desc')
             ->get();
     }
 }

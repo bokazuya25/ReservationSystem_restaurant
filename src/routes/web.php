@@ -5,10 +5,10 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WriterController;
-use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,53 +22,75 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Simple views
 Route::view('/thanks', 'auth.thanks');
 Route::view('/done', 'done');
-Route::view('/reservation/confirm/scan','scan');
+Route::view('/reservation/confirm/scan', 'scan');
 
-Route::get('/', [ShopController::class, 'index']);
-Route::get('/search', [ShopController::class, 'search'])->name('search');
+// Shop related routes
+Route::controller(ShopController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/search', 'search')->name('search');
+    Route::get('/detail/{shop_id}', 'detail');
+});
 
-Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
-Route::get('/review/shop/{shop_id}', [ReviewController::class, 'list']);
+// Review related routes
+Route::controller(ReviewController::class)->group(function () {
+    Route::get('/review/shop/{shop_id}', 'list');
+});
 
+// Authenticated and verified user routes
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/logout', [AuthController::class, 'destroy']);
-
-    Route::post('/favorite/store/{shop}', [FavoriteController::class, 'store'])->name('favorite');
-    Route::delete('/favorite/destroy/{shop}', [FavoriteController::class, 'destroy'])->name('unfavorite');
-
-    Route::get('/mypage', [AuthController::class, 'index']);
-
-    Route::prefix('reservation')->group(function () {
-        Route::post('/store/{shop}', [ReservationController::class, 'store'])->name('reservation');
-        Route::delete('/destroy/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
-        Route::get('/edit/{reservation}', [ReservationController::class, 'edit'])->name('reservation.edit');
-        Route::post('/update/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/logout', 'destroy');
+        Route::get('/mypage', 'index');
     });
 
-    Route::prefix('review')->group(function () {
-        Route::get('/{reservation}', [ReviewController::class, 'index'])->name('review');
-        Route::post('/store/{reservation}', [ReviewController::class, 'store'])->name('review.store');
+    // Reservation routes
+    Route::prefix('reservation')->controller(ReservationController::class)->group(function () {
+        Route::post('/store/{shop}', 'store')->name('reservation');
+        Route::delete('/destroy/{reservation}', 'destroy')->name('reservation.destroy');
+        Route::get('/edit/{reservation}', 'edit')->name('reservation.edit');
+        Route::post('/update/{reservation}', 'update')->name('reservation.update');
+    });
+
+    // Review routes
+    Route::prefix('review')->controller(ReviewController::class)->group(function () {
+        Route::get('/{reservation}', 'index')->name('review');
+        Route::post('/store/{reservation}', 'store')->name('review.store');
+    });
+
+    // Favorites
+    Route::controller(FavoriteController::class)->group(function () {
+        Route::post('/favorite/store/{shop}', 'store')->name('favorite');
+        Route::delete('/favorite/destroy/{shop}', 'destroy')->name('unfavorite');
     });
 });
 
-Route::post('/admin/register/shopRepresentative',[AdminController::class,'register'])->middleware(['auth','role:admin']);
-Route::get('/admin/user/index',[AdminController::class,'userShow'])->middleware(['auth','role:admin']);
-Route::get('admin/search-users/index',[AdminController::class,'search']);
+// Admin routes with 'admin' middleware
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::controller(AdminController::class)->group(function () {
+        Route::post('/register/shopRepresentative', 'register');
+        Route::get('/user/index', 'userShow');
+        Route::get('/search-users/index', 'search');
+    });
 
-Route::view('/admin/register','admin.register_shopRepresentative')->middleware(['auth','role:admin'])->name('admin.register');
-Route::view('/admin/email-notification','admin.email_notification')->middleware(['auth','role:admin'])->name('admin.notification');
+    Route::view('/register', 'admin.register_shopRepresentative')->name('admin.register');
+    Route::view('/email-notification', 'admin.email_notification')->name('admin.notification');
+});
 
-Route::post('/admin/email-notification',[MailController::class,'sendNotification'])->name('send.notification');
+// Mail routes
+Route::post('/admin/email-notification', [MailController::class, 'sendNotification'])->name('send.notification');
 
-Route::get('/writer/shop-edit',[WriterController::class,'editShow'])->middleware('auth','role:admin|writer');
-Route::post('/writer/shop-edit',[WriterController::class,'create_and_edit'])->middleware('auth','role:admin|writer');
+// Writer routes
+Route::middleware(['auth', 'role:admin|writer'])->prefix('writer')->controller(WriterController::class)->group(function () {
+    Route::get('/shop-edit', 'editShow');
+    Route::post('/shop-edit', 'create_and_edit');
+    Route::get('/confirm/shop-reservation', 'reservationShow');
+    Route::patch('/update/shop-reservation', 'update');
+    Route::delete('/destroy/shop-reservation', 'destroy');
+});
 
-Route::get('/writer/confirm/shop-reservation',[WriterController::class,'reservationShow'])->middleware('auth','role:admin|writer');
-
-Route::patch('/writer/update/shop-reservation',[WriterController::class,'update'])->middleware('auth','role:admin|writer');
-
-Route::delete('/writer/destroy/shop-reservation',[WriterController::class,'destroy'])->middleware('auth','role:admin|writer');
-
-Route::get('/reservation/confirm/{reservation}',[ReservationController::class,'confirm'])->middleware('signed')->name('reservation.confirm');
+// Other routes
+Route::get('/reservation/confirm/{reservation}', [ReservationController::class, 'confirm'])->middleware('signed')->name('reservation.confirm');
+Route::post('/pay', [PaymentController::class, 'pay'])->middleware('auth');

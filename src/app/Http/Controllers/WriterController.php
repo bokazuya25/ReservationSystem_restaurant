@@ -71,7 +71,7 @@ class WriterController extends Controller
         }
 
         $shopRepresentative = Auth::user()->shopRepresentative;
-        $reservation = null;
+        $reservations = null;
 
         if ($shopRepresentative) {
             $reservations = Reservation::with('user')

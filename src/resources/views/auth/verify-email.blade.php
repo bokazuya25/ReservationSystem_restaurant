@@ -30,6 +30,6 @@
             </button>
         </form>
 
-        <a class="back__button" href="{{ route('logout') }}">戻る</a>
+        <a class="back__button" href="/">戻る</a>
     </div>
 @endsection

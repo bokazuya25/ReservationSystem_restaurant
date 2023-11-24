@@ -37,7 +37,7 @@ class WriterController extends Controller
             $shop = $request->except(['_token', 'image_url']);
 
             if ($request->image_url) {
-                $path = $request->file('image_url')->store('reservationsystem-restaurant','s3');
+                $path = $request->file('image_url')->store('reservationsystem-restaurant', 's3');
                 $request->file('image_url');
                 $shop['image_url'] = Storage::disk('s3')->url($path);
             }
@@ -92,13 +92,13 @@ class WriterController extends Controller
         unset($reservation['_token']);
         Reservation::find($request->id)->update($reservation);
 
-        return back()->with('update','予約情報を更新しました');
+        return back()->with('update', '予約情報を更新しました');
     }
 
     public function destroy(Request $request)
     {
         Reservation::find($request->id)->delete();
 
-        return back()->with('delete','予約情報を削除しました');
+        return back()->with('delete', '予約情報を削除しました');
     }
 }

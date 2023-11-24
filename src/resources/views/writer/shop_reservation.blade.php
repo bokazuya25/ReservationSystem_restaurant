@@ -71,7 +71,7 @@
                     @endforelse
                 @else
                     <tr>
-                        <td colspan="6" class="table__data table__data--center">※店舗情報を作成してください。</td>
+                        <td colspan="6" class="table__data table__data--center">※店舗情報を作成してください</td>
                     </tr>
                 @endif
             </tbody>

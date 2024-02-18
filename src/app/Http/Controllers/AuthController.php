@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reservation;
 use App\Models\Shop;
-use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,7 +53,7 @@ class AuthController extends Controller
     {
         return Auth::user()->reservations()
             ->where('status', $status)
-            ->with(['shop', 'review'])
+            ->with('shop')
             ->orderBy('date', $status === '予約' ? 'asc' : 'desc')
             ->orderBy('time', $status === '予約' ? 'asc' : 'desc')
             ->get();

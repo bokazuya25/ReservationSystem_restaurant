@@ -10,7 +10,13 @@ header {
 
 .detail__wrap {
     width: 48%;
-    margin-top: 30px;
+    margin-top: 10px;
+    height: 620px;
+    overflow: auto;
+}
+
+.detail__wrap::-webkit-scrollbar {
+    display: none;
 }
 
 .header__back {
@@ -45,6 +51,11 @@ header {
     font-size: 2.8rem;
 }
 
+.rating__star--small {
+    margin-left: 10px;
+    font-size: 2.4rem;
+}
+
 .rating__star::before,
 .rating__star::after {
     content: "★★★★★";
@@ -57,14 +68,18 @@ header {
     left: 0;
     overflow: hidden;
     white-space: nowrap;
-    color: #fa0;
+    color: rgb(63, 90, 242);
     font-size: 2.8rem;
     width: var(--star-width);
 }
 
+.rating__star--small::after {
+    font-size: 2.4rem;
+}
+
 .rating__number {
     font-size: 2.8rem;
-    color: #fa0;
+    color: rgb(63, 90, 242);
     font-weight: bold;
 }
 
@@ -85,7 +100,7 @@ header {
 
 .review__count:hover {
     text-decoration: underline;
-    color: #fa0;
+    color: rgb(63, 90, 242);
 }
 
 .review__count::before,
@@ -131,7 +146,90 @@ header {
 .detail__outline-text {
     margin: 0;
     margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.review__link {
+    color: inherit;
+    font-size: 1.4rem;
+}
+
+.review__link:hover {
+    opacity: 0.6;
+}
+
+.all-review__button {
+    display: block;
+    color: inherit;
+    width: 100%;
+    text-decoration: none;
+    background-color: rgb(84, 124, 243);
+    color: #fff;
     font-size: 1.6rem;
+    text-align: center;
+    height: 35px;
+    padding: 6px;
+    margin: 50px 0 20px;
+}
+
+.all-review__button:hover {
+    opacity: 0.6;
+}
+
+.my-review__content {
+    padding-top: 5px;
+    padding-bottom: 15px;
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+}
+
+.review-button__unit {
+    text-align: right;
+}
+
+.my-review__edit {
+    color: inherit;
+}
+
+.my-review__form {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.my-review__delete-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+    text-decoration: underline;
+    font-size: 1rem;
+}
+
+.my-review__text {
+    margin: 0 20px;
+    font-size: 1.2rem;
+}
+
+.review__comment {
+    margin:10px 12px;
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.my-review__image-area {
+    width: 180px;
+    height: auto;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.my-review__image {
+    width: 180px;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid lightgray;
 }
 
 .mobile-detail__wrap {
@@ -140,6 +238,7 @@ header {
 
 .reservation__wrap {
     width: 45%;
+    height: 650px;
     background-color: rgb(63, 90, 242);
     margin-top: -70px;
     border-radius: 5px;
@@ -238,7 +337,7 @@ header {
 
 .reservation__button-link {
     font-size: 1.6rem;
-    padding: 0 5px;
+    padding: 0 15px;
     cursor: pointer;
 }
 
@@ -263,6 +362,7 @@ header {
     .detail__wrap {
         margin: 0 auto;
         width: 90%;
+        height: auto;
     }
 
     .reservation__wrap {
@@ -274,5 +374,4 @@ header {
         display: flex;
         flex-direction: column;
     }
-
 }

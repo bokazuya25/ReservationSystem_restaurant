@@ -7,7 +7,6 @@ use App\Models\Favorite;
 use App\Models\Reservation;
 use App\Models\Shop;
 use App\Models\Review;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller

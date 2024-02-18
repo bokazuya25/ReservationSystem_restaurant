@@ -6,7 +6,6 @@ use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Favorite;
 use App\Models\Genre;
-use App\Models\Reservation;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +14,7 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
+        $this->updateShopRatings();
         $shops = $this->searchShops($request);
         $areas = Area::all();
         $genres = Genre::all();
@@ -25,6 +25,7 @@ class ShopController extends Controller
 
     public function search(Request $request)
     {
+        $this->updateShopRatings();
         $shops = $this->searchShops($request);
         $favorites = $this->getFavorites();
         $isLoggedIn = Auth::check();
@@ -36,13 +37,24 @@ class ShopController extends Controller
         ]);
     }
 
+    private function updateShopRatings()
+    {
+        $shops = Shop::all();
+        foreach ($shops as $shop) {
+            $avgRating = $shop->reviews()->avg('rating') ?? 0;
+            $shop->avg_rating = $avgRating;
+            $shop->save();
+        }
+    }
+
     private function searchShops(Request $request): \Illuminate\Support\Collection
     {
         $area = $request->input('area');
         $genre = $request->input('genre');
         $word = $request->input('word');
+        $sort = $request->input('sort');
 
-        return Shop::with(['area', 'genre'])
+        $query = Shop::with(['area', 'genre'])
             ->when($area, function ($query) use ($area) {
                 return $query->where('area_id', $area);
             })
@@ -51,8 +63,24 @@ class ShopController extends Controller
             })
             ->when($word, function ($query) use ($word) {
                 return $query->where('name', 'like', '%' . $word . '%');
-            })
-            ->get();
+            });
+
+        $query->orderByRaw('avg_rating = 0');
+
+        switch ($sort) {
+            case 'high_rating':
+                $query->orderBy('avg_rating', 'desc');
+                break;
+            case 'low_rating':
+                $query->orderBy('avg_rating', 'asc');
+                break;
+            case 'random':
+            default:
+                $query = $query->inRandomOrder();
+                break;
+        }
+
+        return $query->get();
     }
 
     private function getFavorites(): array
@@ -65,15 +93,15 @@ class ShopController extends Controller
 
     public function detail(Request $request)
     {
+        $user = Auth::user();
+        $userId = Auth::id();
         $shop = Shop::find($request->shop_id);
+        $review = Review::where('user_id', $userId)->where('shop_id', $shop->id)->first();
         $from = $request->input('from');
 
-        $shopRatingIds = Reservation::where('shop_id',$request->shop_id)->pluck('id');
-        $avgRating = round(Review::whereIn('reservation_id',$shopRatingIds)->avg('rating'),1);
-        $countComments = Review::whereIn('reservation_id',$shopRatingIds)
-            ->whereNotNull('comment')
-            ->count();
-        $countFavorites = Favorite ::where('shop_id',$request->shop_id)->count();
+        $shopReviews = Review::where('shop_id', $request->shop_id)->get();
+        $avgRating = round(Review::where('shop_id', $request->shop_id)->avg('rating'), 1);
+        $countFavorites = Favorite::where('shop_id', $shop->id)->count();
 
         $backRoute = '/';
         switch ($from) {
@@ -84,6 +112,6 @@ class ShopController extends Controller
                 $backRoute = '/mypage';
                 break;
         }
-        return view('detail', compact('shop', 'avgRating' ,'countComments','countFavorites','backRoute'));
+        return view('detail', compact('user', 'shop', 'review', 'avgRating', 'countFavorites', 'backRoute'));
     }
 }

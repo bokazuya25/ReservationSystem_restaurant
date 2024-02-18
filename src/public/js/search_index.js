@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const sortSelect = document.querySelector("[name='sort']");
     const areaSelect = document.querySelector("[name='area']");
     const genreSelect = document.querySelector("[name='genre']");
     const wordInput = document.querySelector("[name='word']");
@@ -35,11 +36,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function fetchShops() {
+        const sort = sortSelect.value;
         const area = areaSelect.value;
         const genre = genreSelect.value;
         const word = wordInput.value;
 
-        fetch(`/search?area=${area}&genre=${genre}&word=${word}`)
+        fetch(`/search?sort=${sort}&area=${area}&genre=${genre}&word=${word}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -86,4 +88,5 @@ document.addEventListener("DOMContentLoaded", function () {
     areaSelect.addEventListener("change", fetchShops);
     genreSelect.addEventListener("change", fetchShops);
     wordInput.addEventListener("input", fetchShops);
+    sortSelect.addEventListener("change", fetchShops);
 });

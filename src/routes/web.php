@@ -56,8 +56,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Review routes
     Route::prefix('review')->controller(ReviewController::class)->group(function () {
-        Route::get('/{reservation}', 'index')->name('review');
-        Route::post('/store/{reservation}', 'store')->name('review.store');
+        Route::get('/{shop_id}', 'index')->name('review');
+        Route::post('/store/{shop_id}', 'store')->name('review.store');
+        Route::post('/delete/{review_id}', 'delete');
     });
 
     // Favorites
@@ -73,6 +74,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::post('/register/shopRepresentative', 'register');
         Route::get('/user/index', 'userShow');
         Route::get('/search-users/index', 'search');
+        Route::get('/csv-import', 'importIndex');
+        Route::post('/csv-import','csvImport');
     });
 
     Route::view('/register', 'admin.register_shopRepresentative')->name('admin.register');

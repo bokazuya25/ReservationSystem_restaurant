@@ -15,6 +15,7 @@ class Shop extends Model
         'area_id',
         'genre_id',
         'image_url',
+        'avg_rating'
     ];
 
     public function favorites()
@@ -40,5 +41,10 @@ class Shop extends Model
     public function shopRepresentative()
     {
         return $this->hasOne(Shop_representatives::class, 'shop_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'shop_id');
     }
 }

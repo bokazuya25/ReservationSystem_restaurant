@@ -20,6 +20,7 @@ class CreateShopsTable extends Migration
             $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
             $table->string('outline')->nullable();
             $table->string('image_url')->nullable();
+            $table->decimal('avg_rating',2,1)->default(0);
             $table->timestamps();
         });
     }

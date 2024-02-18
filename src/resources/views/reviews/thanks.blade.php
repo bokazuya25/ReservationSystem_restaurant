@@ -9,6 +9,6 @@
         <p class="content__text">
             レビューを投稿しました<br>ありがとうございました
         </p>
-        <a class="content__button" href="/mypage">戻る</a>
+        <a class="content__button" href="/detail/{{ $shop_id }}">戻る</a>
     </div>
 @endsection

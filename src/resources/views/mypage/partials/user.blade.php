@@ -57,19 +57,6 @@
                     <div class="reservation__content reservation__content--steelblue">
                         <div class="reservation__header">
                             <p class="header__title reservation-history__header__title">履歴{{ $loop->iteration }}</p>
-                            <div class="reservation__header-button">
-                                    <form action="{{ route('review',$reservation) }}" method="get" class="header__form">
-                                        @if ($reservation->review)
-                                            <button type="submit" class="form__button--review" title="レビューを編集する">
-                                                <img src="{{ asset('images/review_lightcoral.svg') }}" alt="レビューを編集する" class="form__button-img">
-                                            </button>
-                                        @else
-                                            <button type="submit" class="form__button--review" title="レビューを書く">
-                                                <img src="{{ asset('images/review.svg') }}" alt="レビューを書く" class="form__button-img">
-                                            </button>
-                                        @endif
-                                    </form>
-                            </div>
                         </div>
                         <table class="reservation__table">
                             <tr>

@@ -22,15 +22,15 @@
 http://13.114.30.21/ （※現在停止中）
 
 ## 機能一覧
-ログイン機能、メール認証、お気に入り追加/削除、予約追加/変更、検索、レビュー、リマインドメール送信、QRコードで予約認証、決済機能  
+ログイン機能、メール認証、お気に入り追加/削除、予約追加/変更、検索、並び替え、レビュー、リマインドメール送信、QRコードで予約認証、決済機能  
 管理者権限で店舗代表者作成、ユーザー一覧閲覧、お知らせメール送信  
-店舗代表者権限で店舗情報の作成/更新、予約確認/変更/削除  
+店舗代表者権限で店舗情報の作成/更新、予約確認/変更/削除  csvインポートで新規店舗追加
 
 ## 仕様技術
 docker、Laravel 8.x、PHP 7.4、laravel-fortify、laravel-permission、Stripe、javascript
 
 ## テーブル設計及びER図
-![Alt text](img/table.png)
+![alt text](img/table.png)
 
 ## 環境構築
 ### コマンドライン上
@@ -42,24 +42,48 @@ $ git clone https://github.com/bokazuya25/ReservationSystem_restaurant.git
 $ docker compose up -d --build
 $ docker compose exec php bash
 ```
-### PHPコンテナ上
+### PHPコンテナ内
 ```php
-$ composer create-project "laravel/laravel=8.*" . --prefer-dist
+$ composer install
+```
+
+### src上
+```php
 $ cp .env.local .env
 $ php artisan migrate --seed
 ```
 
-### ダミーデータの説明
-#### ユーザー一覧
+### PHPコンテナ内
+```php
+$ php artisan key:generate
+$ php artisan migrate --seed
+```
+
+### src上
+```php
+$ sudo chmod -R 775 storage
+$ sudo chmod -R 775 bootstrap/cache
+```
+
+## ダミーデータの説明
+### ユーザー一覧
 1. 管理者　　　email: admin@admin.com
 2. 店舗代表者　email: shop@shop.com　※"shop_id: 1"の代表者
 3. ユーザー　　　email: test@test.com  
 
 ※パスワードは全て"password"でログインできます。
 
-#### 店舗の新規作成方法
+## 店舗の新規作成方法
+### 店舗代表者が作成する
 1. 管理者でログイン
 2. "店舗代表者作成"で店舗代表者権限を持つユーザーを作成
 3. 店舗代表者でログイン
 4. 店舗情報の作成で作成する
+
+### csvファイルをインポートして作成する
+1. 管理者でログイン
+2. 管理者専用ページの新規店舗追加
+3. csvファイルを作成し、選択（[サンプルCSVファイル](img/csvインポート用.csv)）
+4. インポートボタンをクリック
+
 

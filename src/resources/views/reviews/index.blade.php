@@ -58,7 +58,7 @@
             @error('comment')
                 <p class="error__message">{{ $message }}</p>
             @enderror
-            <textarea class="review__form-textarea" id="text-input" name="comment" maxlength="400" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ $review->comment ?? '' }}</textarea>
+            <textarea class="review__form-textarea" id="text-input" name="comment" maxlength="400" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment', $review->comment ?? '') }}</textarea>
             <p class="count-string" id="text-count">0/400(最高文字数)</p>
             <script>
                 document.getElementById('text-input').addEventListener('input',function(){

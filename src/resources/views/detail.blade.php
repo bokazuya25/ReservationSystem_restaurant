@@ -8,9 +8,8 @@
     <div class="detail__wrap">
         <div class="detail__header">
             <div class="header__title">
-                <a href="{{ $backRoute }}" class="header__back">
-                    < </a>
-                        <span class="header__shop-name">{{ $shop->name }}</span>
+                <a href="{{ $backRoute }}" class="header__back"><</a>
+                <span class="header__shop-name">{{ $shop->name }}</span>
             </div>
             <div class="header__review">
                 <span class="rating__star" data-rate="{{ number_format($avgRating, 1) }}"></span>
@@ -39,7 +38,7 @@
 
         <a href="/review/shop/{{ $shop->id }}" class="all-review__button">全ての口コミ情報</a>
 
-        @if($review)
+        @if ($review)
             <div class="my-review__content">
                 <div class="review-button__unit">
                     <a href="/review/{{ $shop->id }}" class="my-review__edit">口コミを編集</a>
@@ -49,19 +48,20 @@
                             onclick="return confirm('本当に口コミを削除しますか？')">口コミを削除</button>
                     </form>
                 </div>
-                @if ($review->rating = 1)
+                @if ($review->rating == 1)
                     <p class="my-review__text">非常に不満です</p>
-                @elseif ($review->rating = 2)
+                @elseif ($review->rating == 2)
                     <p class="my-review__text">少し不満です</p>
-                @elseif ($review->rating = 3)
+                @elseif ($review->rating == 3)
                     <p class="my-review__text">普通です</p>
-                @elseif ($review->rating = 4)
+                @elseif ($review->rating == 4)
                     <p class="my-review__text">大変満足です</p>
-                @elseif ($review->rating = 5)
+                @elseif ($review->rating == 5)
                     <p class="my-review__text">非常に満足です</p>
                 @endif
-                <span class="rating__star rating__star--small"
-                    data-rate="{{ number_format($review->rating, 1) }}"></span>
+
+                <span class="rating__star rating__star--small" data-rate="{{ number_format($review->rating, 1) }}"></span>
+                <span class="rating__number">{{ number_format($review->rating, 1) }}</span>
                 <p class="review__comment">{{ $review->comment }}</p>
                 @if ($review->image_url)
                     <div class="my-review__image-area">

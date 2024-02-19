@@ -9,9 +9,9 @@
         <div class="header__sort">
             <label class="select-box__label sort__label">
                 <select name="sort" class="select-box__item sort__item">
-                    <option value="random" {{ request('sort') == 'random' ? 'selected' : '' }}>ランダム</option>
-                    <option value="high_rating" {{ request('sort') == 'high_rating' ? 'selected' : '' }}>評価が高い順</option>
-                    <option value="low_rating" {{ request('sort') == 'low_rating' ? 'selected' : '' }}>評価が低い順</option>
+                    <option value="random">ランダム</option>
+                    <option value="high_rating">評価が高い順</option>
+                    <option value="low_rating">評価が低い順</option>
                 </select>
             </label>
         </div>
@@ -21,8 +21,7 @@
                 <select name="area" class="select-box__item">
                     <option value="">All area</option>
                     @foreach ($areas as $area)
-                        <option class="select-box__option" value="{{ $area->id }}"
-                            {{ request('area') == $area->id ? 'selected' : '' }}>{{ $area->name }}
+                        <option class="select-box__option" value="{{ $area->id }}">{{ $area->name }}
                         </option>
                     @endforeach
                 </select>
@@ -32,7 +31,7 @@
                 <select name="genre" class="select-box__item">
                     <option value="">All genre</option>
                     @foreach ($genres as $genre)
-                        <option value="{{ $genre->id }}" {{ request('genre') == $genre->id ? 'selected' : '' }}>
+                        <option value="{{ $genre->id }}">
                             {{ $genre->name }}</option>
                     @endforeach
                 </select>
@@ -41,8 +40,7 @@
             <div class="search__item">
                 <div class="search__item-button"></div>
                 <label class="search__item-label">
-                    <input type="text" name="word" class="search__item-input" placeholder="Search ..."
-                        value="{{ request('word') }}">
+                    <input type="text" name="word" class="search__item-input" placeholder="Search ...">
                 </label>
             </div>
         </div>

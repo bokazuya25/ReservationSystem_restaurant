@@ -5,7 +5,7 @@
 @endsection
 
 @section('header')
-    <div class="header__right">
+    <form class="header__right" action="/" method="get">
         <div class="header__sort">
             <label class="select-box__label sort__label">
                 <select name="sort" class="select-box__item sort__item">
@@ -44,7 +44,7 @@
                 </label>
             </div>
         </div>
-    </div>
+    </form>
 
     <div class="header__right--hidden">
         <div class="search__icon">

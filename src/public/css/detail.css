@@ -213,7 +213,7 @@ header {
 }
 
 .review__comment {
-    margin:10px 12px;
+    margin: 10px 12px;
     margin-top: 0;
     font-size: 1.2rem;
 }
@@ -373,5 +373,6 @@ header {
         border-radius: 5px;
         display: flex;
         flex-direction: column;
+        height: auto;
     }
 }

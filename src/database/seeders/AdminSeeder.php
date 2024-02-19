@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Contracts\Permission;
 
 class AdminSeeder extends Seeder
 {
@@ -35,5 +34,7 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
         ]);
+
+        User::factory()->count(47)->create();
     }
 }

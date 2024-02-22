@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
-    public function store(Shop $shop,ReservationRequest $request)
+    public function store(Shop $shop, ReservationRequest $request)
     {
         $reservation = new Reservation();
         $reservation->shop_id = $shop->id;
@@ -31,28 +31,30 @@ class ReservationController extends Controller
         return back();
     }
 
-    public function edit(Reservation $reservation){
+    public function edit(Reservation $reservation)
+    {
+        $user = Auth::user();
         $shop = Shop::find($reservation->shop_id);
+        $review = Review::where('user_id', $user->id)->where('shop_id', $shop->id)->first();
 
-        $shopRatingIds = Reservation::where('shop_id', $reservation->shop_id)->pluck('id');
-        $avgRating = round(Review::whereIn('reservation_id', $shopRatingIds)->avg('rating'), 1);
-        $countComments = Review::whereIn('reservation_id', $shopRatingIds)
-            ->whereNotNull('comment')
-            ->count();
+        $shopReviews = Review::where('shop_id', $reservation->shop_id)->get();
+        $avgRating = round(Review::where('shop_id', $reservation->shop_id)->avg('rating'), 1);
         $countFavorites = Favorite::where('shop_id', $reservation->shop_id)->count();
 
         $backRoute = '/mypage';
 
-        return view('detail',compact('reservation','shop','avgRating','countComments','countFavorites','backRoute'));
+        return view('detail', compact('reservation', 'user', 'shop', 'review', 'shopReviews', 'avgRating', 'countFavorites', 'backRoute'));
     }
 
-    public function update(ReservationRequest $request,Reservation $reservation){
+    public function update(ReservationRequest $request, Reservation $reservation)
+    {
         $edit = $request->all();
         Reservation::find($reservation->id)->update($edit);
         return redirect('/done');
     }
 
-    public function confirm($reservationId){
+    public function confirm($reservationId)
+    {
         $reservation = Reservation::find($reservationId);
         $reservation->status = '来店';
         $reservation->save();

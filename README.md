@@ -50,7 +50,6 @@ $ composer install
 ### src上
 ```php
 $ cp .env.local .env
-$ php artisan migrate --seed
 ```
 
 ### PHPコンテナ内
